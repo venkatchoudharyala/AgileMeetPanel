@@ -54,7 +54,7 @@ def main():
 					st.error("Still in Review, You are not Authorized Yet!!")
 def LeadPanel():
 	Projects = UserDetails["Projects"]
-	project = st.checkbox("Select a Project", Projects, index = None)
+	project = st.selectbox("Select a Project", Projects, index = None)
 	with st.expander(project):
 		ProjectMeetFile = "MeetingNotes/" + project
 		ProjectDetailsFile = "Projects/" + project + ".pjs"
