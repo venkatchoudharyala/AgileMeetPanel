@@ -67,8 +67,8 @@ def LeadPanel():
 			SelMem = st.selectbox("Team", TeamMembers)
 			
 			df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
-			for i in Tasks[SelMem]:
-				newRow = pd.DataFrame({"Task": i["Task"], "Status": i["Status"], "Deadline": i["Deadline"]})
+			for i in range(0, len(Tasks[SelMem])):
+				newRow = pd.DataFrame({"Task": Tasks[SelMem][i]["Task"], "Status": Tasks[SelMem][i]["Status"], "Deadline": Tasks[SelMem][i]["Deadline"]})
 				df = pd.concat([df, newRow], ignore_index = True)
 			st.dataframe(df)
 	if st.checkbox("Create New Project", value = False):
@@ -86,12 +86,15 @@ def CreateProject():
 	Team.append(UserDetails["Name"] + ".ua")
 	if st.button("Create"):
 		if ProjName.strip() != "":
+			tsks = {}
 			for i in Team:
+				tsks[i] = []
 				Path = "UserAcc/" + i
 				UsAcc = FileReader(Path)
 				UsAcc["Projects"].append(ProjName.strip())
 				FileWriter(Path, UsAcc)
-			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": {}}
+			
+			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": tsks}
 			Path = "Projects/" + ProjName.strip() + ".pjs"
 			FileWriter(Path, PjDetails)
 			Team = []
