@@ -36,12 +36,12 @@ def Rapo(Path):
 		st.write("User Not Found")
 	with open("LoginApp/UnVerified.uv", "r") as File:
 		NewUsers = json.load(File)
-	for i in range(0, len(NewUsers["Names"])):
-		st.write(NewUsers["Names"][i])
-		Role = st.selectbox("Select Role", ["Member", "Lead"], index = 0, key = NewUsers["Names"][i])
-		if st.button("Verify"):
-			Name = NewUsers["Names"][i]
-			del NewUsers["Names"][i]
+	if len(NewUsers["Names"][0]) != 0:
+		st.write(NewUsers["Names"][0])
+		Role = st.selectbox("Select Role", ["Member", "Lead", "Delete"], index = 0,placeholder = "Select Role")
+		if st.button("Verify") and Role != "Delete":
+			Name = NewUsers["Names"][0]
+			del NewUsers["Names"][0]
 			with open("LoginApp/UnVerified.uv", "w") as File:
 				json.dump(NewUsers, File)
 			Path = "UserAcc/" + Name + ".ua"
@@ -51,3 +51,6 @@ def Rapo(Path):
 				UDetails["Role"] = Role
 				UDetails["AccVerifStatus"] = "Verified"
 				json.dump(UDetails, File)
+		if st.button("Verify") and Role = "Delete":
+			del NewUsers["Names"][0]
+		
