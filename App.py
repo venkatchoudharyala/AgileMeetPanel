@@ -73,7 +73,8 @@ def CreateProject():
 	ProjName = st.text_input("Enter the Project Name")
 	ProjDescp = st.text_input("Description")
 	while True:
-		Mem = st.selectbox("Select Team", dir, key="unique_selector_key", placeholder="Select Members")
+		dirs = os.listdir("UserAcc")
+		Mem = st.selectbox("Select Team", dirs, key="unique_selector_key", placeholder="Select Members")
 		st.write("Team Members")
 		Team.append(Mem)
 		if len(Team) != 0:
