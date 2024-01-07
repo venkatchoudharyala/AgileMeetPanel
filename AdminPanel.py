@@ -34,7 +34,7 @@ def Rapo(Path):
 			st.write(Details)
 	except FileNotFoundError:
 		st.write("User Not Found")
-	with open("UnVerified.uv", r) as File:
+	with open("UnVerified.uv", "r") as File:
 		NewUsers = json.load(File)
 	for i in range(0, len(NewUsers["Names"])):
 		st.write(NewUsers["Names"][i])
@@ -42,10 +42,10 @@ def Rapo(Path):
 		if st.button("Verify"):
 			Name = NewUsers["Names"][i]
 			del NewUsers["Names"][i]
-			with open("LoginApp/UnVerified.uv", w) as File:
+			with open("LoginApp/UnVerified.uv", "w") as File:
 				json.dump(NewUsers, File)
 			Path = "UserAcc/" + Name + ".ua"
-			with open(Path, w) as File:
+			with open(Path, "w") as File:
 				UDetails = json.load(File)
 				UDetails["Role"] = Role
 				UDetails["AccVerifStatus"] = "Verified"
