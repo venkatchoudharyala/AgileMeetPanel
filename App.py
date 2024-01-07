@@ -75,7 +75,7 @@ def CreateProject():
 	while True:
 		dirs = os.listdir("UserAcc")
 		for i in dirs:
-			if i not in Mem:
+			if i not in Team:
 				st.write(i)
 		Mem = st.text_input("Enter Name")
 		st.write("Team Members")
