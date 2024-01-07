@@ -37,24 +37,29 @@ def Rapo(Path):
 	with open("LoginApp/UnVerified.uv", "r") as File:
 		NewUsers = json.load(File)
 	if len(NewUsers["Names"]) != 0:
+		st.write("Authorization")
 		st.write(NewUsers["Names"][0])
 		Role = st.selectbox("Select Role", ["Member", "Lead"], index = None, key = NewUsers["Names"][0])
-		if st.button("Verify"):
-			Name = NewUsers["Names"][0]
-			del NewUsers["Names"][0]
-			with open("LoginApp/UnVerified.uv", "w") as File:
-				json.dump(NewUsers, File)
-			Path = "UserAcc/" + Name + ".ua"
-			with open(Path, "r") as File:
-				UDetails = json.load(File)
-			with open(Path, "w") as File:
-				UDetails["Role"] = Role
-				UDetails["AccVerifStatus"] = "Verified"
-				json.dump(UDetails, File)
-		if st.button("Suspend"):
-			with open("LoginApp/UnVerified.uv", "r") as File:
-				UDetails = json.load(File)
-			with open("LoginApp/UnVerified.uv", "w") as File:
+		col1, col2 = st.columns(2)
+		with col1:
+			if st.button("Verify"):
+				Name = NewUsers["Names"][0]
 				del NewUsers["Names"][0]
-				json.dump(NewUsers, File)
+				with open("LoginApp/UnVerified.uv", "w") as File:
+					json.dump(NewUsers, File)
+				Path = "UserAcc/" + Name + ".ua"
+				with open(Path, "r") as File:
+					UDetails = json.load(File)
+				with open(Path, "w") as File:
+					UDetails["Role"] = Role
+					UDetails["AccVerifStatus"] = "Verified"
+					json.dump(UDetails, File)
+		with col2
+			if st.button("Suspend"):
+				with open("LoginApp/UnVerified.uv", "r") as File:
+					UDetails = json.load(File)
+				with open("LoginApp/UnVerified.uv", "w") as File:
+					del NewUsers["Names"][0]
+					json.dump(NewUsers, File)
+				
 		
