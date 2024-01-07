@@ -88,7 +88,7 @@ def MemberPanel():
 			PjDetails = FileReader(ProjectDetailsFile)
 			TeamMembers = PjDetails["Team"]
 			Tasks = PjDetails["Tasks"]
-			SelMem = UserDetails["Name"]
+			SelMem = UserDetails["Name"] + ".ua"
 			
 			df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
 			for i in range(0, len(Tasks[SelMem])):
