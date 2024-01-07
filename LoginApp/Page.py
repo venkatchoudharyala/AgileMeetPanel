@@ -82,7 +82,8 @@ def SignUpPage():
 				with open(Path, "w") as File:
 					File.write(UDetails)
 				if UserName.strip() != "Admin":
-					with open("UnVerified.uv", "w") as File:
+					path = "LoginApp/UnVerified.uv"
+					with open(path, "w") as File:
 						UnvList = json.load(File)
 						UnvList["Names"].append(UserName.strip())
 						json.dump(UnvList, File)
