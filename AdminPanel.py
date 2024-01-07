@@ -36,9 +36,9 @@ def Rapo(Path):
 		st.write("User Not Found")
 	with open("LoginApp/UnVerified.uv", "r") as File:
 		NewUsers = json.load(File)
-	if len(NewUsers["Names"][0]) != 0:
+	if len(NewUsers["Names"]) != 0:
 		st.write(NewUsers["Names"][0])
-		Role = st.selectbox("Select Role", ["Member", "Lead", "Delete"], index = 0,placeholder = "Select Role")
+		Role = st.selectbox("Select Role", ["Member", "Lead", "Delete"], index = None, key = NewUsers["Names"][0])
 		if st.button("Verify") and Role != "Delete":
 			Name = NewUsers["Names"][0]
 			del NewUsers["Names"][0]
