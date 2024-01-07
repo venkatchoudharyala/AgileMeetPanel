@@ -75,13 +75,12 @@ def LeadPanel():
 		CreateProject()
 
 def CreateProject():
-	dir = os.listdir("UserAcc")
-	
 	ProjName = st.text_input("Enter the Project Name")
 	ProjDescp = st.text_input("Description")
 
 	dirs = os.listdir("UserAcc")
 	dirs.remove("Admin.ua")
+	dirs.remove(UserDetails["Name"] + ".ua")
 	Team = st.multiselect("Select Team", dirs, placeholder = "Select ur Team Members")
 	Team.append(UserDetails["Name"] + ".ua")
 	if st.button("Create"):
