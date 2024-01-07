@@ -81,6 +81,7 @@ def CreateProject():
 	dirs = os.listdir("UserAcc")
 	dirs.remove("Admin.ua")
 	dirs.remove(UserDetails["Name"] + ".ua")
+	dirs.remove("Test.ua")
 	Team = st.multiselect("Select Team", dirs, placeholder = "Select ur Team Members")
 	Team.append(UserDetails["Name"] + ".ua")
 	if st.button("Create"):
