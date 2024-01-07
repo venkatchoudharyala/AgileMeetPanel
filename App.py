@@ -41,6 +41,7 @@ def main():
 	if UserName == "Admin":
 		ap.Scrapper()
 	else:
+		Role = "Lead"
 		if Role == "Lead":
 			LeadPanel()
 		elif Role == "Memeber":
