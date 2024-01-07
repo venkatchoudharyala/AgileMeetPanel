@@ -42,7 +42,7 @@ def Rapo(Path):
 		if st.button("Verify"):
 			Name = NewUsers["Names"][i]
 			del NewUsers["Names"][i]
-			with open("UnVerified.uv", w) as File:
+			with open("LoginApp/UnVerified.uv", w) as File:
 				json.dump(NewUsers, File)
 			Path = "UserAcc/" + Name + ".ua"
 			with open(Path, w) as File:
