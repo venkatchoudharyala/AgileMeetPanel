@@ -69,7 +69,7 @@ def LeadPanel():
 def CreateProject():
 	dir = os.listdir("UserAcc")
 	Team = []
-	Team.append(UserDetails["Name"])
+	Team.append(UserDetails["Name"] + ".ua")
 	ProjName = st.text_input("Enter the Project Name")
 	ProjDescp = st.text_input("Description")
 
@@ -77,8 +77,7 @@ def CreateProject():
 	for i in dirs:
 		if i in Team:
 			dirs.remove(i)
-			dirs.remove("Admin")
-			st.write(i)
+			dirs.remove("Admin.ua")
 	Mem = st.selectbox("Select Team", dirs, placeholder = "Select ur Team Members")
 	st.write("Team Members")
 	Team.append(Mem)
