@@ -55,8 +55,6 @@ def Rapo(Path):
 					UDetails["AccVerifStatus"] = "Verified"
 					json.dump(UDetails, File)
 				st.experimental_rerun()
-			elif Role == None:
-				st.error("Select a Role")
 		with col2:
 			if st.button("Suspend"):
 				with open("LoginApp/UnVerified.uv", "r") as File:
