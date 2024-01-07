@@ -75,7 +75,7 @@ def CreateProject():
 	ProjName = st.text_input("Enter the Project Name")
 	ProjDescp = st.text_input("Description")
 	while True:
-		Mem = st.selectbox("Select Team", dir, Key = "Selector")
+		Mem = st.selectbox("Select Team", dir, key = "Selector")
 		Team.append(Mem)
 		if len(Team) != 0:
 			for i in Team:
