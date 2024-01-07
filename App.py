@@ -61,7 +61,7 @@ def LeadPanel():
 			df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
 			for i in Tasks[SelMem]:
 				newRow = pd.DataFrame({"Task": i["Task"], "Status": i["Status"], "Deadline": i["Deadline"]})
-        			df = pd.concat([FinalDF, newRow], ignore_index = True)
+				df = pd.concat([df, newRow], ignore_index = True)
 			st.dataframe(df)
 	if st.checkbox("Create New Project"):
 		CreateProject()
