@@ -84,7 +84,7 @@ def SignUpPage():
 				if UserName.strip() == "Admin":
 					k = {"Names": []}
 					UnvList = json.dumps(k)
-					with open("UnvList.uv", "w") as File:
+					with open("LoginApp/UnVerified.uv", "w") as File:
 						File.write(UnvList)
 				else:
 					path = "LoginApp/UnVerified.uv"
