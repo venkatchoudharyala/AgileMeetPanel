@@ -80,7 +80,7 @@ def CreateProject():
 
 	dirs = os.listdir("UserAcc")
 	dirs.remove("Admin.ua")
-	Team = st.multiselect("Select Team", dirs, index = None, placeholder = "Select ur Team Members")
+	Team = st.multiselect("Select Team", dirs, placeholder = "Select ur Team Members")
 	Team.append(UserDetails["Name"] + ".ua")
 	if st.button("Create"):
 		if ProjName.strip() != "":
