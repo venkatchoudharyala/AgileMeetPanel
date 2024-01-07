@@ -91,7 +91,7 @@ def CreateProject():
 				UsAcc = FileReader(Path)
 				UsAcc["Projects"].append(ProjName.strip())
 				FileWriter(Path, UsAcc)
-			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": []}
+			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": {}}
 			Path = "Projects/" + ProjName.strip() + ".pjs"
 			FileWriter(Path, PjDetails)
 			Team = []
