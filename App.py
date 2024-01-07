@@ -63,7 +63,7 @@ def LeadPanel():
 			PjDetails = FileReader(ProjectDetailsFile)
 			TeamMembers = PjDetails["Team"]
 			Tasks = PjDetails["Tasks"]
-			SelMem = st.selectbox(Team, TeamMembers)
+			SelMem = st.selectbox("Team", TeamMembers)
 			
 			df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
 			for i in Tasks[SelMem]:
