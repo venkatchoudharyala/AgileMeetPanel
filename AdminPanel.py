@@ -38,7 +38,7 @@ def Rapo(Path):
 		NewUsers = json.load(File)
 	for i in range(0, len(NewUsers["Names"])):
 		st.write(NewUsers["Names"][i])
-		Role = st.selectbox("Select Role", ["Member", "Lead"])
+		Role = st.selectbox("Select Role", ["Member", "Lead"], index = 0, key = NewUsers["Names"][i])
 		if st.button("Verify"):
 			Name = NewUsers["Names"][i]
 			del NewUsers["Names"][i]
