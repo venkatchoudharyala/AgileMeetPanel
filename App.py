@@ -36,7 +36,7 @@ def main():
 	if st.session_state["LoginVal"]:
 		st.session_state['page'] = "MainRoom"
 		UserName = UserDetails["Name"]
-		Role = UserDetails["Role"]
+		#Role = UserDetails["Role"]
 		if UserName == "Admin":
 			ap.Scrapper()
 		else:
