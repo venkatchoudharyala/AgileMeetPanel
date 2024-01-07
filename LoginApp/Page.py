@@ -82,13 +82,7 @@ def SignUpPage():
 					st.write("UserName Already Exists!! Try another..")
 
 			except FileNotFoundError:
-				df = pd.DataFrame(columns = ["FORMULA_IN_LATEX", "IMAGE_FILE_PATH"])
-				path = "Files/" + UserName.strip() + ".xlsx"
-				df.to_excel(path, index=False)
-				ImageDir = "Images/" + UserName.strip()
-				os.makedirs(ImageDir, exist_ok = False)
-
-				Details = {"Name":UserName.strip(),"FilePath":path,"Password":HashPasswd(Passd.strip()), "CompletedCount": "0", "NoLog":"0", "TimeStamps":[]}
+				Details = {"Name":UserName.strip(), "Password":HashPasswd(Passd.strip()), "Projects": []}
 				UDetails = json.dumps(Details)
 				Path = os.path.join("UserAcc", UserName.strip() + ".ua")
 				with open(Path, "w") as File:
