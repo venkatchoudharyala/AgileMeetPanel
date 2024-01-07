@@ -45,7 +45,7 @@ def Rapo(Path):
 			del NewUsers["Names"][i]
 			with open("UnVerified.uv", w) as File:
 				json.dump(NewUsers, File)
-			Path = "UserAcc/" + Name + ".ua")
+			Path = "UserAcc/" + Name + ".ua"
 			with open(Path, w) as File:
 				UDetails = json.load(File)
 				UDetails["Role"] = Role
