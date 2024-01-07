@@ -9,6 +9,7 @@ import datetime
 import pytz
 from CryptTech import Recipes
 import AdminPanel as ap
+import pandas as pd
 
 hide_st_style = """
 		<style>
