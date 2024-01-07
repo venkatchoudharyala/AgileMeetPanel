@@ -35,28 +35,19 @@ def Rapo(Path):
 			DisplayImage(Details["FilePath"])
 	except FileNotFoundError:
 		st.write("User Not Found")
-
-def download_directory(directory_path):
-	with zipfile.ZipFile("download.zip", "w", zipfile.ZIP_DEFLATED) as zipf:
-		for root, folders, files in os.walk(directory_path):
-			for file in files:
-				file_path = os.path.join(root, file)
-				zipf.write(file_path)
-	st.download_button(
-        label="Download Directory",
-        data="download.zip",
-        file_name="Data.zip",
-        mime="application/zip"
-    	)
-#download_directory("Files")
-
-
-def DisplayImage(path):
-	df = pd.read_excel(path)
-	st.dataframe(df)
-	for index, row in df.iterrows():
-		text = row["FORMULA_IN_LATEX"]
-		ImgPath = row["IMAGE_FILE_PATH"]
-
-		st.latex(text)
-		st.image(ImgPath)
+	with open("UnVerified.uv", r) as File:
+		NewUsers = json.load(File)
+	for i in range(0, len(NewUsers["Names"])):
+		st.write(NewUsers["Names"][i])
+		Role = st.selectbox("Select Role", ["Member", "Lead"])
+		if st.button("Verify"):
+			Name = NewUsers["Names"][i]
+			del NewUsers["Names"][i]
+			with open("UnVerified.uv", w) as File:
+				json.dump(NewUsers, File)
+			Path = "UserAcc/" + Name + ".ua")
+			with open(Path, w) as File:
+				UDetails = json.load(File)
+				UDetails["Role"] = Role
+				UDetails["AccVerifStatus"] = "Verified"
+				json.dump(UDetails, File)
