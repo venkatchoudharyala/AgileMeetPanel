@@ -72,7 +72,7 @@ def CreateProject():
 	ProjName = st.text_input("Enter the Project Name")
 	ProjDescp = st.text_input("Description")
 	while True:
-		Mem = st.selectbox("Select Team", dir)
+		Mem = st.selectbox("Select Team", dir, placeholder = "Employees in the Organisation")
 		Team.append(Mem)
 		if len(Team) != 0:
 			for i in Team:
@@ -83,7 +83,7 @@ def CreateProject():
 				UsAcc = FileReader(Path)
 				UsAcc["Projects"].append(ProjName)
 				FileWriter(Path, UsAcc)
-			PjDetails = {"MeetSessions": [], "Team": Team, "Tasks": []}
+			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": []}
 			Path = "Projects/" + ProjName + ".pjs"
 			FileWriter(Path, PjDetails)
 			Team = []
