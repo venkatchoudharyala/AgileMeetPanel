@@ -55,20 +55,21 @@ def main():
 def LeadPanel():
 	Projects = UserDetails["Projects"]
 	project = st.selectbox("Select a Project", Projects, index = None)
-	with st.expander(project):
-		ProjectMeetFile = "MeetingNotes/" + project
-		ProjectDetailsFile = "Projects/" + project + ".pjs"
-		
-		PjDetails = FileReader(ProjectDetailsFile)
-		TeamMembers = PjDetails["Team"]
-		Tasks = PjDetails["Tasks"]
-		SelMem = st.selectbox(Team, TeamMembers)
-		
-		df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
-		for i in Tasks[SelMem]:
-			newRow = pd.DataFrame({"Task": i["Task"], "Status": i["Status"], "Deadline": i["Deadline"]})
-			df = pd.concat([df, newRow], ignore_index = True)
-		st.dataframe(df)
+	if project != None:
+		with st.expander("Expand For more Details"):
+			ProjectMeetFile = "MeetingNotes/" + project
+			ProjectDetailsFile = "Projects/" + project + ".pjs"
+			
+			PjDetails = FileReader(ProjectDetailsFile)
+			TeamMembers = PjDetails["Team"]
+			Tasks = PjDetails["Tasks"]
+			SelMem = st.selectbox(Team, TeamMembers)
+			
+			df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
+			for i in Tasks[SelMem]:
+				newRow = pd.DataFrame({"Task": i["Task"], "Status": i["Status"], "Deadline": i["Deadline"]})
+				df = pd.concat([df, newRow], ignore_index = True)
+			st.dataframe(df)
 	if st.checkbox("Create New Project", value = False):
 		CreateProject()
 
