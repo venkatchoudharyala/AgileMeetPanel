@@ -34,7 +34,7 @@ def Rapo(Path):
 			st.write(Details)
 	except FileNotFoundError:
 		st.write("User Not Found")
-	with open("UnVerified.uv", "r") as File:
+	with open("LoginApp/UnVerified.uv", "r") as File:
 		NewUsers = json.load(File)
 	for i in range(0, len(NewUsers["Names"])):
 		st.write(NewUsers["Names"][i])
