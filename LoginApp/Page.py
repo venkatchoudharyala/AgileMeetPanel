@@ -81,14 +81,17 @@ def SignUpPage():
 				Path = os.path.join("UserAcc", UserName.strip() + ".ua")
 				with open(Path, "w") as File:
 					File.write(UDetails)
-				if UserName.strip() != "Admin":
+				if UserName.strip() == "Admin":
+					k = {"Names": []}
+					UnvList = json.dumps(k)
+					with open("UnvList.uv", "w") as File:
+						File.write(UnvList)
+				else:
 					path = "LoginApp/UnVerified.uv"
 					with open(path, "w") as File:
-						UnvList = File.read()
-						k = json.loads(UnvList)
-						k["Names"].append(UserName.strip())
-						UnvList = json.dumps(k)
-						File.write(UnvList)
+						UnvList = json.load(UnvList)
+						UnvList["Names"].append(UserName.strip())
+						json.dump(UnvList, File)
 
 				st.write("Signup Successful")
 				st.write("Be Marked with ur Account Credentials..")
