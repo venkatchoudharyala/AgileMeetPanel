@@ -69,7 +69,7 @@ def LeadPanel():
 				newRow = pd.DataFrame({"Task": i["Task"], "Status": i["Status"], "Deadline": i["Deadline"]})
 				df = pd.concat([df, newRow], ignore_index = True)
 			st.dataframe(df)
-	if st.checkbox("Create New Project"):
+	if st.checkbox("Create New Project", value = False):
 		CreateProject()
 
 def CreateProject():
