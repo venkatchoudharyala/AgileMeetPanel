@@ -45,8 +45,9 @@ def Rapo(Path):
 			with open("LoginApp/UnVerified.uv", "w") as File:
 				json.dump(NewUsers, File)
 			Path = "UserAcc/" + Name + ".ua"
-			with open(Path, "w") as File:
+			with open(Path, "r") as File:
 				UDetails = json.load(File)
+			with open(Path, "w") as File:
 				UDetails["Role"] = Role
 				UDetails["AccVerifStatus"] = "Verified"
 				json.dump(UDetails, File)
