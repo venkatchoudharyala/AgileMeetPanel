@@ -44,7 +44,7 @@ def main():
 			Role = "Lead"
 			if Role == "Lead" and Status == "Verified":
 				LeadPanel()
-			elif Role == "Memeber" and Status == "Verified":
+			elif Role == "Member" and Status == "Verified":
 				MemberPanel()
 			else:
 				st.write("You are not Authorized Yet!!")
