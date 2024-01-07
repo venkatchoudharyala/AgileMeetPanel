@@ -37,14 +37,8 @@ def LoginPage():
 			with open(UserPath, "r") as File:
 				Details = json.load(File)
 				RePassd = Details["Password"]
-				LoTimes = int(Details["NoLog"])
 
 			if CheckPasswdHash(Passd.strip(), RePassd):
-				LoTimes += 1
-				Details["NoLog"] = str(LoTimes)
-				Details["TimeStamps"].append(str(time))
-				with open(UserPath, "w") as File:
-					json.dump(Details, File)
 				st.session_state["user"] = Details
 				st.write("Login Successful")
 				st.session_state['page'] = 'EmptyPage'
