@@ -10,8 +10,6 @@ import pytz
 from CryptTech import Recipes
 import AdminPanel as ap
 
-st.set_page_config(initial_sidebar_state = "collapsed")
-
 hide_st_style = """
 		<style>
 		header {visibility: hidden;}
