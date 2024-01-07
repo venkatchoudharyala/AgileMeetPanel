@@ -52,5 +52,9 @@ def Rapo(Path):
 				UDetails["AccVerifStatus"] = "Verified"
 				json.dump(UDetails, File)
 		if st.button("Verify") and Role == "Delete":
-			del NewUsers["Names"][0]
+			with open("LoginApp/UnVerified.uv", "r") as File:
+				UDetails = json.load(File)
+			with open("LoginApp/UnVerified.uv", "w") as File:
+				del NewUsers["Names"][0]
+				json.dump(NewUsers, File)
 		
