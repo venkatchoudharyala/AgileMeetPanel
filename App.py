@@ -45,8 +45,7 @@ def main():
 				with tab1:
 					LeadPanel()
 				with tab2:
-					if st.checkbox("Create New Project", value = False):
-						CreateProject()
+					CreateProject()
 			elif Role == "Member" and Status == "Verified":
 				tab1, tab2 = st.tabs(["Projects", "Meetings"])
 				with tab1:
@@ -120,7 +119,7 @@ def CreateProject():
 			Path = "Projects/" + ProjName.strip() + ".pjs"
 			FileWriter(Path, PjDetails)
 			Team = []
-			st.experimental_rerun()
+			st.rerun()
 		else:
 			st.error("Enter a Valid Project Name")
 
