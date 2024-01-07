@@ -22,7 +22,7 @@ st.markdown(hide_st_style, unsafe_allow_html = True)
 def Scrapper():
 	Form = st.form("Login")
 	dir = os.listdir("UserAcc")
-	MPath = st.selectbox("Users", dir)
+	MPath = st.selectbox("Users", dir, key = "AdminP")
 	#UserName = Form.text_input("User Name")
 	Path = "UserAcc/" + MPath
 	Rapo(Path)
