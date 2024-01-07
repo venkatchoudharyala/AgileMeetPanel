@@ -78,14 +78,14 @@ def CreateProject():
 			for i in Team:
 				st.write(i)
 		if st.button("Create"):
-			if ProjName.strip() != None:
+			if ProjName != "":
 				for i in Team:
 					Path = "UserAcc/" + i + ".ua"
 					UsAcc = FileReader(Path)
-					UsAcc["Projects"].append(ProjName)
+					UsAcc["Projects"].append(ProjName.strip())
 					FileWriter(Path, UsAcc)
 				PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": []}
-				Path = "Projects/" + ProjName + ".pjs"
+				Path = "Projects/" + ProjName.strip() + ".pjs"
 				FileWriter(Path, PjDetails)
 				Team = []
 				return 0
