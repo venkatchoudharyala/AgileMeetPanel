@@ -94,7 +94,7 @@ def CreateProject():
 			FileWriter(Path, PjDetails)
 			Team = []
 			return 0
-			st.experimental_rerun()
+		st.experimental_rerun()
 		else:
 			st.error("Enter a Valid Project Name")
 
