@@ -49,7 +49,9 @@ def main():
 					if st.checkbox("Create New Project", value = False):
 						CreateProject()
 			elif Role == "Member" and Status == "Verified":
-				MemberPanel()
+				tab1, tab2 = st.tabs(["Projects", "Meetings"])
+				with tab1:
+					MemberPanel()
 			else:
 				path = "LoginApp/UnVerified.uv"
 				with open(path, "r") as File:
