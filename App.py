@@ -36,15 +36,18 @@ def main():
 	if st.session_state["LoginVal"]:
 		st.session_state['page'] = "MainRoom"
 		UserName = UserDetails["Name"]
-		#Role = UserDetails["Role"]
+		Role = UserDetails["Role"]
+		Status = UserDetails["AccVerifStatus"]
 		if UserName == "Admin":
 			ap.Scrapper()
 		else:
 			Role = "Lead"
-			if Role == "Lead":
+			if Role == "Lead" and Status == "Verified":
 				LeadPanel()
-			elif Role == "Memeber":
+			elif Role == "Memeber" and Status == "Verified":
 				MemberPanel()
+			else:
+				st.write("You are not Authorized Yet!!")
 def LeadPanel():
 	Projects = UserDetails["Projects"]
 	for project in Projects:
@@ -72,7 +75,7 @@ def CreateProject():
 	ProjName = st.text_input("Enter the Project Name")
 	ProjDescp = st.text_input("Description")
 	while True:
-		Mem = st.selectbox("Select Team", placeholder = "Employees in the Organisation", dir)
+		Mem = st.selectbox("Select Team", dir, Key = "Selector")
 		Team.append(Mem)
 		if len(Team) != 0:
 			for i in Team:
