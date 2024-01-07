@@ -88,8 +88,9 @@ def SignUpPage():
 						File.write(UnvList)
 				else:
 					path = "LoginApp/UnVerified.uv"
-					with open(path, "w") as File:
+					with open(path, "r") as File:
 						UnvList = json.load(File)
+					with open(path, "w") as File:
 						UnvList["Names"].append(UserName.strip())
 						json.dump(UnvList, File)
 
