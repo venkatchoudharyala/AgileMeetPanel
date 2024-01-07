@@ -72,32 +72,33 @@ def CreateProject():
 	Team.append(UserDetails["Name"])
 	ProjName = st.text_input("Enter the Project Name")
 	ProjDescp = st.text_input("Description")
-	while True:
-		dirs = os.listdir("UserAcc")
-		for i in dirs:
-			if i not in Team:
-				st.write(i)
-		Mem = st.text_input("Enter Name")
-		st.write("Team Members")
-		Team.append(Mem)
-		if len(Team) != 0:
+
+	dirs = os.listdir("UserAcc")
+	for i in dirs:
+		if i in Team:
+			dirs.remove(i)
+			dirs.remove("Admin")
+			st.write(i)
+	Mem = st.text_input("Enter Name")
+	st.write("Team Members")
+	Team.append(Mem)
+	if len(Team) != 0:
+		for i in Team:
+			st.write(i)
+	if st.button("Create"):
+		if ProjName.strip() != "":
 			for i in Team:
-				st.write(i)
-		if st.button("Create"):
-			if ProjName.strip() != "":
-				for i in Team:
-					Path = "UserAcc/" + i + ".ua"
-					UsAcc = FileReader(Path)
-					UsAcc["Projects"].append(ProjName.strip())
-					FileWriter(Path, UsAcc)
-				PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": []}
-				Path = "Projects/" + ProjName.strip() + ".pjs"
-				FileWriter(Path, PjDetails)
-				Team = []
-				break
-				return 0
-			else:
-				st.error("Enter a Valid Project Name")
+				Path = "UserAcc/" + i + ".ua"
+				UsAcc = FileReader(Path)
+				UsAcc["Projects"].append(ProjName.strip())
+				FileWriter(Path, UsAcc)
+			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": []}
+			Path = "Projects/" + ProjName.strip() + ".pjs"
+			FileWriter(Path, PjDetails)
+			Team = []
+			return 0
+		else:
+			st.error("Enter a Valid Project Name")
 
 def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
