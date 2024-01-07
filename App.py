@@ -42,7 +42,12 @@ def main():
 		else:
 			Role = "Lead"
 			if Role == "Lead" and Status == "Verified":
-				LeadPanel()
+				tab1, tab2, tab3 = st.tabs(["Projects", "New Project", "Meetings"])
+				with tab1:
+					LeadPanel()
+				with tab2:
+					if st.checkbox("Create New Project", value = False):
+						CreateProject()
 			elif Role == "Member" and Status == "Verified":
 				MemberPanel()
 			else:
@@ -71,8 +76,24 @@ def LeadPanel():
 				newRow = pd.DataFrame({"Task": Tasks[SelMem][i]["Task"], "Status": Tasks[SelMem][i]["Status"], "Deadline": Tasks[SelMem][i]["Deadline"]})
 				df = pd.concat([df, newRow], ignore_index = True)
 			st.dataframe(df)
-	if st.checkbox("Create New Project", value = False):
-		CreateProject()
+def MemberPanel():
+	Projects = UserDetails["Projects"]
+	project = st.selectbox("Select a Project", Projects, index = None)
+	if project != None:
+		with st.expander("Expand For more Details"):
+			ProjectMeetFile = "MeetingNotes/" + project
+			ProjectDetailsFile = "Projects/" + project + ".pjs"
+			
+			PjDetails = FileReader(ProjectDetailsFile)
+			TeamMembers = PjDetails["Team"]
+			Tasks = PjDetails["Tasks"]
+			SelMem = UserName
+			
+			df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
+			for i in range(0, len(Tasks[SelMem])):
+				newRow = pd.DataFrame({"Task": Tasks[SelMem][i]["Task"], "Status": Tasks[SelMem][i]["Status"], "Deadline": Tasks[SelMem][i]["Deadline"]})
+				df = pd.concat([df, newRow], ignore_index = True)
+			st.dataframe(df)
 
 def CreateProject():
 	ProjName = st.text_input("Enter the Project Name")
