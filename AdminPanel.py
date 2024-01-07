@@ -42,7 +42,7 @@ def Rapo(Path):
 		Role = st.selectbox("Select Role", ["Member", "Lead"], index = None, key = NewUsers["Names"][0])
 		col1, col2 = st.columns(2)
 		with col1:
-			if st.button("Verify"):
+			if st.button("Verify") and Role != None:
 				Name = NewUsers["Names"][0]
 				del NewUsers["Names"][0]
 				with open("LoginApp/UnVerified.uv", "w") as File:
@@ -55,6 +55,8 @@ def Rapo(Path):
 					UDetails["AccVerifStatus"] = "Verified"
 					json.dump(UDetails, File)
 				st.experimental_rerun()
+			elif Role == None:
+				st.error("Select a Role")
 		with col2:
 			if st.button("Suspend"):
 				with open("LoginApp/UnVerified.uv", "r") as File:
