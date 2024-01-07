@@ -37,14 +37,14 @@ def main():
 		st.session_state['page'] = "MainRoom"
 		UserName = UserDetails["Name"]
 		Role = UserDetails["Role"]
-	if UserName == "Admin":
-		ap.Scrapper()
-	else:
-		Role = "Lead"
-		if Role == "Lead":
-			LeadPanel()
-		elif Role == "Memeber":
-			MemberPanel()
+		if UserName == "Admin":
+			ap.Scrapper()
+		else:
+			Role = "Lead"
+			if Role == "Lead":
+				LeadPanel()
+			elif Role == "Memeber":
+				MemberPanel()
 def LeadPanel():
 	Projects = UserDetails["Projects"]
 	for project in Projects:
