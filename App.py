@@ -78,16 +78,17 @@ def CreateProject():
 			for i in Team:
 				st.write(i)
 		if st.button("Create"):
-			for i in Team:
-				Path = "UserAcc/" + i + ".ua"
-				UsAcc = FileReader(Path)
-				UsAcc["Projects"].append(ProjName)
-				FileWriter(Path, UsAcc)
-			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": []}
-			Path = "Projects/" + ProjName + ".pjs"
-			FileWriter(Path, PjDetails)
-			Team = []
-			return 0
+			if ProjName.strip() != None:
+				for i in Team:
+					Path = "UserAcc/" + i + ".ua"
+					UsAcc = FileReader(Path)
+					UsAcc["Projects"].append(ProjName)
+					FileWriter(Path, UsAcc)
+				PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": []}
+				Path = "Projects/" + ProjName + ".pjs"
+				FileWriter(Path, PjDetails)
+				Team = []
+				return 0
 
 def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
