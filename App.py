@@ -78,7 +78,7 @@ def CreateProject():
 		if i in Team:
 			dirs.remove(i)
 			dirs.remove("Admin.ua")
-	Mem = st.selectbox("Select Team", dirs, placeholder = "Select ur Team Members")
+	Mem = st.selectbox("Select Team", dirs, index = None, placeholder = "Select ur Team Members")
 	st.write("Team Members")
 	Team.append(Mem)
 	if len(Team) != 0:
