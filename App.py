@@ -40,7 +40,6 @@ def main():
 		if UserName == "Admin":
 			ap.Scrapper()
 		else:
-			Role = "Lead"
 			if Role == "Lead" and Status == "Verified":
 				tab1, tab2, tab3 = st.tabs(["Projects", "New Project", "Meetings"])
 				with tab1:
