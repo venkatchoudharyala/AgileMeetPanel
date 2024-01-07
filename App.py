@@ -87,7 +87,7 @@ def CreateProject():
 	if st.button("Create"):
 		if ProjName.strip() != "":
 			for i in Team:
-				Path = "UserAcc/" + i + ".ua"
+				Path = "UserAcc/" + i
 				UsAcc = FileReader(Path)
 				UsAcc["Projects"].append(ProjName.strip())
 				FileWriter(Path, UsAcc)
