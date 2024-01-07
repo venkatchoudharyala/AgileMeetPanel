@@ -72,13 +72,13 @@ def CreateProject():
 	ProjName = st.text_input("Enter the Project Name")
 	ProjDescp = st.text_input("Description")
 	while True:
-		Mem = st.selectbox("Select Team", dir, placeholder = "Employees in the Organisation")
+		Mem = st.selectbox("Select Team", placeholder = "Employees in the Organisation", dir)
 		Team.append(Mem)
 		if len(Team) != 0:
 			for i in Team:
 				st.write(i)
 		if st.button("Create"):
-			if ProjName != "":
+			if ProjName.strip() != "":
 				for i in Team:
 					Path = "UserAcc/" + i + ".ua"
 					UsAcc = FileReader(Path)
@@ -88,7 +88,10 @@ def CreateProject():
 				Path = "Projects/" + ProjName.strip() + ".pjs"
 				FileWriter(Path, PjDetails)
 				Team = []
+				break
 				return 0
+			else:
+				st.error("Enter a Valid Project Name")
 
 def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
