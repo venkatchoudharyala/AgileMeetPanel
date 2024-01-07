@@ -45,7 +45,13 @@ def main():
 			elif Role == "Member" and Status == "Verified":
 				MemberPanel()
 			else:
-				st.write("You are not Authorized Yet!!")
+				path = "LoginApp/UnVerified.uv"
+				with open(path, "r") as File:
+					k = json.load("File")
+				if UserName not in k["Names"]:
+					st.error("Your Account Creation was Suspended")
+				else:
+					st.error("Still in Review, You are not Authorized Yet!!")
 def LeadPanel():
 	Projects = UserDetails["Projects"]
 	for project in Projects:
