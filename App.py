@@ -79,7 +79,7 @@ def CreateProject():
 			dirs.remove(i)
 			dirs.remove("Admin")
 			st.write(i)
-	Mem = st.text_input("Enter Name")
+	Mem = st.selectbox("Select Team", dirs, placeholder = "Select ur Team Members")
 	st.write("Team Members")
 	Team.append(Mem)
 	if len(Team) != 0:
