@@ -22,11 +22,19 @@ st.markdown(hide_st_style, unsafe_allow_html = True)
 def Scrapper():
 	Form = st.form("Login")
 	dir = os.listdir("UserAcc")
+	PrDir = os.lisdir("Projects")
 	dir.remove("Test.ua")
-	MPath = st.selectbox("Users", dir, key = "AdminP")
+	col1, col2 = st.columns(2)
+	with col1:
+		MPath = st.selectbox("Users", dir, key = "AdminP")
+		Path = "UserAcc/" + MPath
+		Rapo(Path)
+	with col2:
+		PPath = st.selectbox("Projects", PrDir, key = "PP")
+		Path = "Projects/" + MPath
+		Rapo(Path)
 	#UserName = Form.text_input("User Name")
-	Path = "UserAcc/" + MPath
-	Rapo(Path)
+	
 def Rapo(Path):
 	try:
 		with open(Path, "r") as File:
