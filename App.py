@@ -183,7 +183,7 @@ def CreateMeetSession(ProjName):
 		st.session_state["Title"] = st.text_input("Enter a Title for the Note or Leave blank for Automated title")
 		if st.form_submit_button("Create"):
 			if st.session_state["Title"] == "":
-				st.session_state["Title"] = "MEET_HELD_ON_" + str(time)
+				st.session_state["Title"] = "MEET_HELD_ON_" + str(time).replace(" ", _)
 				#st.session_state["Title"] = st.session_state["Title"] + ".txt"
 			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "w") as file:
     				file.write("Session Name: " + st.session_state["Title"] + "\n")
