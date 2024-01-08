@@ -194,22 +194,26 @@ def CreateMeetSession(ProjName):
 		SelMem = st.selectbox("Select a Team Member", Team)
 		DeadLine = st.date_input("Select the Deadline", value = "today")
 		Status = "Un Resolved"
-		if st.button("Send"):
-			time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
-			PjDetails = FileReader(Path)
-			PjDetails["MeetSessions"].append({"Tasks": {SelMem: []}})
-			PjDetails["MeetSessions"][-1]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
-			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
-			FileWriter(Path, PjDetails)
-			#---------->Mail
+
 	with col2:
 		st.title(" ")
-		st.title(" ")
-		if st.button("Save & New Note"):
-			with open(st.session_state["Title"], "a") as file:
-    				file.write("\n--- New Note ---\n")
-    				file.write(Note)
-	
+
+		sc1, sc2 = st.columns(2)
+		with sc1:
+			if st.button("Send"):
+				time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
+				PjDetails = FileReader(Path)
+				PjDetails["MeetSessions"].append({"Tasks": {SelMem: []}})
+				PjDetails["MeetSessions"][-1]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
+				PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
+				FileWriter(Path, PjDetails)
+				#---------->Mail
+		with sc2:
+			if st.button("Save & New Note"):
+				with open(st.session_state["Title"], "a") as file:
+	    				file.write("\n--- New Note ---\n")
+	    				file.write(Note)
+		
 			
 				
 def FileReader(Path):
