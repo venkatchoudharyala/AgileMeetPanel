@@ -168,8 +168,7 @@ def CreateMeetSession(ProjName):
 	NewMeetID = len(PjDetails["SessionTitles"])
 	Title = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
 	if Title:
-		PjDetails["SessionTitles"][NewMeetID]["Title"] = Title
-		PjDetails["MeetTitles"][NewMeeID]["TimeStamp"] = str(time)
+		PjDetails["SessionTitles"].append("Title": Title, "TimeStamp": time)
 		FileWriter(Path, PjDetails)
 	
 	Note = st.text_area("Enter Action Items or Meeting Notes")
