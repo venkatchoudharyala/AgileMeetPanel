@@ -178,11 +178,10 @@ def CreateMeetSession(ProjName):
 	NewMeetID = len(PjDetails["SessionTitles"])
 	with st.form(key = "fomr", clear_on_submit=True):
 		time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
-		st.session_state["Temp"] = False
-		st.session_state["Title"] = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time), disabled = st.session_state["Temp"])
-		st.session_state["Title"] += ".txt"
+		st.session_state["Title"] = st.text_input("Enter a Title for the Note or Leave blank for Automated title")
 		if st.form_submit_button("Create"):
-			st.session_state["Temp"] = True
+			if st.session_state["Title"] == "":
+			st.session_state["Title"] = "MEET_HELD_ON_" + str(time)
 			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "w") as file:
     				file.write("\n--- New Note ---\n")
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
