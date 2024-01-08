@@ -133,9 +133,9 @@ def CreateProject():
 				FileWriter(Path, PjDetails)
 				Team = []
 				Message = "Project - " + ProjName + " Created Successfully, Please reload the Application to Connect with your Team!!"
-				st.write(Message, icon="✅")
 			else:
 				st.error("Enter a Valid Project Name")
+			st.success(Message, icon="✅")
 
 def MeetingPanel():
 	Projects = UserDetails["Projects"]
