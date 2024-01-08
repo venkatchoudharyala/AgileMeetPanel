@@ -170,20 +170,22 @@ def MeetingPanel():
 				st.dataframe(df)
 
 def CreateMeetSession(ProjName):
+	pc = st.empty()
 	time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
-	Title = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time)) + ".txt"
-	if Title and st.button("Create", key = "create"):
+	Title = pc.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time)) + ".txt"
+	if Title and pc.button("Create", key = "create"):
 		with open("MeetingNotes/" + ProjName + "/" + Title, "w") as file:
     			file.write("\n--- New Note ---\n")
     			file.write("This is my new note.\n")
 		PjDetails["SessionTitles"].append({"Title": Title, "TimeStamp": str(time)})
 		FileWriter(Path, PjDetails)
+		pc = st.empty()
 		Meeting(PjDetails)
 
-def Meeting(PjDetails):
+def Meeting(PjDetails, Title):
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
 	with col1:
