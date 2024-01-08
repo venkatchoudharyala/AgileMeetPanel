@@ -226,7 +226,7 @@ def CreateMeetSession(ProjName):
 
 			subject = ProjName + ", New Task, " + "Deadline: " + str(DeadLine) 
 			body = Note
-			to_email = "venkatcala@gmail.com"
+			to_email = UserDetails["Email"]
 			smtp_server = "smtp.gmail.com"
 			smtp_port = 587
 			smtp_user = "vsoft101@gmail.com"  # Replace with your Gmail email address
