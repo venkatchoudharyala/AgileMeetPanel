@@ -33,16 +33,6 @@ def Scrapper():
 		PPath = st.selectbox("Projects", PrDir, key = "PP", label_visibility = "collapsed")
 		Path = "Projects/" + PPath
 		Rapo(Path)
-	#UserName = Form.text_input("User Name")
-	
-def Rapo(Path):
-	try:
-		with open(Path, "r") as File:
-			UDetails = File.read()
-			Details = json.loads(UDetails)
-			st.write(Details)
-	except FileNotFoundError:
-		st.write("User Not Found")
 	with st.expander("Authorizations"):
 		with open("LoginApp/UnVerified.uv", "r") as File:
 			NewUsers = json.load(File)
@@ -75,4 +65,13 @@ def Rapo(Path):
 					st.experimental_rerun()
 		else:
 			st.success("No pending Authorizations left")
-		
+	#UserName = Form.text_input("User Name")
+	
+def Rapo(Path):
+	try:
+		with open(Path, "r") as File:
+			UDetails = File.read()
+			Details = json.loads(UDetails)
+			st.write(Details)
+	except FileNotFoundError:
+		st.write("User Not Found")
