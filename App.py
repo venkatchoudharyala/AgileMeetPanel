@@ -191,6 +191,7 @@ def CreateMeetSession(ProjName):
 		if st.button("Send"):
 			time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 			PjDetails = FileReader(Path)
+			PjDetails["MeetSessions"].append({"Tasks": {}})
 			PjDetails["MeetSessions"][NewMeetID]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
 			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
 			FileWriter(Path, PjDetails)
