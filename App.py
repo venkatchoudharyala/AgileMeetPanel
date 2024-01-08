@@ -46,10 +46,15 @@ def main():
 					LeadPanel()
 				with tab2:
 					CreateProject()
+				with tab3:
+					MeetingPanel()
+					
 			elif Role == "Member" and Status == "Verified":
 				tab1, tab2 = st.tabs(["Projects", "Meetings"])
 				with tab1:
 					MemberPanel()
+				with tab2:
+					MeetingPanel()
 			else:
 				path = "LoginApp/UnVerified.uv"
 				with open(path, "r") as File:
@@ -123,9 +128,61 @@ def CreateProject():
 		else:
 			st.error("Enter a Valid Project Name")
 
+def MeetingPanel():
+	Projects = UserDetails["Projects"]
+	project = st.selectbox("Select a Project", Projects, index = None)
+	if project != None:
+		with st.expander("Expand For more Details"):
+			ProjectMeetFile = "MeetingNotes/" + project
+			ProjectDetailsFile = "Projects/" + project + ".pjs"
+			PjDetails = FileReader(ProjectDetailsFile)
+			MeetSess = PjDetails["MeetSessions"]
+			for i in range(0, len(MeetSess)):
+				SessionTitles.append(MeetSess[i]["Title"])
+			with st.expander("Past Meetings"):
+				SelMeet = st.selectbox("Select a Past Meeting", SessionTitles, index = -1)
+				ProjectMeetFile += SelMeet
+				st.subheader("Meeting Notes")
+				with open(ProjectMeetFile, "r") as file:
+    					lines = file.readlines()
+    					for line in lines:
+        					st.write(line.strip())
+
+				SelMeetInd = SessionTitles.index(SelMeet)
+				SelMem = st.selectbox("Select a Team Member", list(MeetSess[SelMeetInd]["Tasks"].keys()))
+				SelMemTasks = MeetSess[SelMeetInd]["Tasks"][SelMem]
+				df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
+				for i in range(0, len(SelMemTasks)):
+					newRow = pd.DataFrame({"Task": SelMemTasks[i]["Task"], "Status": SelMemTasks[i]["Status"], "Deadline": SelMemTasks[i]["Deadline"]})
+					df = pd.concat([df, newRow], ignore_index = True)
+				st.dataframe(df)
+	CreateMeetSession(project)
+
 def CreateMeetSession(ProjName):
+	time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
+	NewMeetID = len(PjDetails["MeetIDs"])
+	PjDetails["MeetTitles"][NewMeetID]["Title"] = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
+	PjDetails["MeetTitles"][NewMeeID]["TimeStamp"] = str(time)
+	FileWriter(Path, PjDetails)
+	
+	Note = st.text_area("Enter Action Items or Meeting Notes")
+	col1, col2 = st.columns(2)
+	with col:
+		if st.button("Assign"):
+			Team = PjDetails["Team"]
+			SelMem = st.selectbox("Select a Team Member", Team)
+			DeadLine = st.date_input("Select the Deadline", value = "today")
+			Status = "Un Resolved"
+			if st.button("Send"):
+				time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
+				PjDetails = FileReader(Path)
+				PjDetails["MeetSessions"][NewMeetID]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
+				PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
+				FileWriter(Path, PjDetails)
+				//---------->Mail
+	
 			
 				
 def FileReader(Path):
