@@ -211,7 +211,7 @@ def CreateMeetSession(ProjName):
 			FileWriter(Path, PjDetails)
 			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "a") as file:
 				file.write("Task Assigned to " + SelMem + "\n")
-				file.write("Time Stamp: " + timers + "\n")
+				file.write("Time Stamp: " + str(timers) + "\n")
 				file.write("Notes: " + Note)
 			#---------->Mail
 		if st.button("Save & New Note"):
