@@ -210,8 +210,7 @@ def CreateMeetSession(ProjName):
 			PjDetails["MeetSessions"][-1]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			FileWriter(Path, PjDetails)
-			zibu = st.session_state["Title"]
-			if zibu = "":
+			if st.session_state["Title"] == "":
 				kpr = "MEET_HELD_ON_" + str(time.timestamp()).replace(".", "_")
 			else:
 				kpr = st.session_state["Title"]
