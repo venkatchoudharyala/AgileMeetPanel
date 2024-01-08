@@ -186,6 +186,7 @@ def CreateMeetSession(ProjName):
 		time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 		st.session_state["Title"] = st.text_input("Enter a Title for the Note or Leave blank for Automated title")
 		if st.form_submit_button("Create"):
+			click_button()
 			if st.session_state["Title"] == "":
 				st.session_state["Title"] = "MEET_HELD_ON_" + str(time.timestamp()).replace(".", "_")
 				#st.session_state["Title"] = st.session_state["Title"] + ".txt"
