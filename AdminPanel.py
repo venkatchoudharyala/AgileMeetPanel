@@ -22,7 +22,7 @@ st.markdown(hide_st_style, unsafe_allow_html = True)
 def Scrapper():
 	Form = st.form("Login")
 	dir = os.listdir("UserAcc")
-	PrDir = os.lisdir("Projects/")
+	PrDir = os.listdir("Projects")
 	dir.remove("Test.ua")
 	col1, col2 = st.columns(2)
 	with col1:
