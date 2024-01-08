@@ -146,7 +146,7 @@ def MeetingPanel():
 			else:
 				st.write("No Meet Sessions yet")
 			if len(SessionTitles) != 0 and SelMeet:
-				ProjectMeetFile += SelMeet
+				ProjectMeetFile = ProjectMeetFile + "/" + SelMeet
 				st.subheader("Meeting Notes")
 				with open(ProjectMeetFile, "r") as file:
 					lines = file.readlines()
