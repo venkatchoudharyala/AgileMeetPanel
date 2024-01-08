@@ -174,7 +174,7 @@ def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
-	with st.form(clear_on_submit=True):
+	with st.form(key = "fomr", clear_on_submit=True):
 		st.session_state["Title"] = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
 		st.session_state["Title"] += ".txt"
 		if st.form_submit_button("Create", key = "create"):
