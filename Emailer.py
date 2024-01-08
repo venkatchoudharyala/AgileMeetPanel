@@ -26,8 +26,8 @@ to_email = "recipient@example.com"
 # Set up your SMTP server details
 smtp_server = "smtp.gmail.com"
 smtp_port = 587
-smtp_user = "your_email@gmail.com"  # Replace with your Gmail email address
-smtp_password = "your_password"  # Replace with your Gmail app password
+smtp_user = "vsoft101@gmail.com"  # Replace with your Gmail email address
+smtp_password = "hfvq iubg yhhr ygca"  # Replace with your Gmail app password
 
 # Send the email
 send_email(subject, body, to_email, smtp_server, smtp_port, smtp_user, smtp_password)
