@@ -39,7 +39,7 @@ def Scrapper():
 		if len(NewUsers["Names"]) != 0:
 			st.error("User Name: " + NewUsers["Names"][0])
 			with open("UserAcc/" + NewUsers["Names"][0] + ".ua" , "r") as File:
-				k = json.read(File)
+				k = json.load(File)
 			st.error("Email: " + k["Email"])
 			Role = st.selectbox("Select Role", ["Member", "Lead"], index = None, key = NewUsers["Names"][0])
 			col1, col2 = st.columns(2)
