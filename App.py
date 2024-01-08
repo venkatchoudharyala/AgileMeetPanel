@@ -224,7 +224,7 @@ def CreateMeetSession(ProjName):
 				file.write("Time Stamp: " + str(timers) + "\n")
 				file.write("Notes: " + Note)
 			# Example usage
-			subject = "Task"
+			subject = "New Task, " + "Deadline: " + str(DeadLine) 
 			body = Note
 			to_email = "venkatcala@gmail.com"
 			
