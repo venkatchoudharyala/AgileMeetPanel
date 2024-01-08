@@ -207,7 +207,7 @@ def CreateMeetSession(ProjName):
 		st.title(" ")
 		st.title(" ")
 		if st.button("Save & New Note"):
-			with open(st.session_state["Title"], "a") as file:
+			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "a") as file:
 				file.write("\n--- New Note ---\n")
 				file.write(Note)
 	
