@@ -142,21 +142,22 @@ def MeetingPanel():
 			SessionTitles.append(MeetSess[i]["Title"])
 		with st.expander("Past Meetings"):
 			SelMeet = st.selectbox("Select a Past Meeting", SessionTitles, index = -1)
-			ProjectMeetFile += SelMeet
-			st.subheader("Meeting Notes")
-			with open(ProjectMeetFile, "r") as file:
-				lines = file.readlines()
-				for line in lines:
-					st.write(line.strip())
-
-			SelMeetInd = SessionTitles.index(SelMeet)
-			SelMem = st.selectbox("Select a Team Member", list(MeetSess[SelMeetInd]["Tasks"].keys()))
-			SelMemTasks = MeetSess[SelMeetInd]["Tasks"][SelMem]
-			df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
-			for i in range(0, len(SelMemTasks)):
-				newRow = pd.DataFrame({"Task": SelMemTasks[i]["Task"], "Status": SelMemTasks[i]["Status"], "Deadline": SelMemTasks[i]["Deadline"]})
-				df = pd.concat([df, newRow], ignore_index = True)
-			st.dataframe(df)
+			if SelMeet:
+				ProjectMeetFile += SelMeet
+				st.subheader("Meeting Notes")
+				with open(ProjectMeetFile, "r") as file:
+					lines = file.readlines()
+					for line in lines:
+						st.write(line.strip())
+	
+				SelMeetInd = SessionTitles.index(SelMeet)
+				SelMem = st.selectbox("Select a Team Member", list(MeetSess[SelMeetInd]["Tasks"].keys()))
+				SelMemTasks = MeetSess[SelMeetInd]["Tasks"][SelMem]
+				df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
+				for i in range(0, len(SelMemTasks)):
+					newRow = pd.DataFrame({"Task": SelMemTasks[i]["Task"], "Status": SelMemTasks[i]["Status"], "Deadline": SelMemTasks[i]["Deadline"]})
+					df = pd.concat([df, newRow], ignore_index = True)
+				st.dataframe(df)
 	if project:
 		CreateMeetSession(project)
 
