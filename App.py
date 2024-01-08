@@ -184,6 +184,7 @@ def CreateMeetSession(ProjName):
 			if st.session_state["Title"] == "":
 				st.session_state["Title"] = "MEET_HELD_ON_" + str(time)
 				st.session_state["Title"] = st.session_state["Title"] + "txt"
+				st.session_state["Path"] = "MeetingNotes/" + ProjName + "/" + st.session_state["Title"]
 			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "w") as file:
     				file.write("\n--- New Note ---\n")
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
@@ -204,7 +205,7 @@ def CreateMeetSession(ProjName):
 			PjDetails["MeetSessions"][-1]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			FileWriter(Path, PjDetails)
-			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "a") as file:
+			with open(st.session_state["Path"], "a") as file:
 				file.write("\nTask Assignment\n")
 				file.write(SelMem)
 				file.write(Note)
@@ -214,7 +215,7 @@ def CreateMeetSession(ProjName):
 		st.title(" ")
 		st.title(" ")
 		if st.button("Save & New Note"):
-			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "a") as file:
+			with open(st.session_state["Path"], "a") as file:
 				file.write("\n--- New Note ---\n")
 				file.write(Note)
 	
