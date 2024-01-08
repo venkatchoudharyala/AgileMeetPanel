@@ -198,6 +198,8 @@ def CreateMeetSession(ProjName):
 		if st.button("Assign"):
 			time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 			PjDetails = FileReader(Path)
+			if SelMem not in PjDetails["MeetSessions"][-1]["Tasks"].keys():
+				PjDetails["MeetSessions"][-1]["Tasks"][SelMem] = []
 			PjDetails["MeetSessions"][-1]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			FileWriter(Path, PjDetails)
