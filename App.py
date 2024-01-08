@@ -172,7 +172,7 @@ def CreateMeetSession(ProjName):
 	NewMeetID = len(PjDetails["SessionTitles"])
 	Title = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time)) + ".txt"
 	if Title and st.button("Create", key = "create"):
-		with open(Title + ".txt", "a") as file:
+		with open("MeetingNotes/" + ProjName + "/" + Title + ".txt", "a") as file:
     			file.write("\n--- New Note ---\n")
     			file.write("This is my new note.\n")
 		PjDetails["SessionTitles"].append({"Title": Title, "TimeStamp": str(time)})
