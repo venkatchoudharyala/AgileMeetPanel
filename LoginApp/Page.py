@@ -77,7 +77,7 @@ def SignUpPage():
 					st.write("UserName Already Exists!! Try another..")
 
 			except FileNotFoundError:
-				Details = {"Name":UserName.strip(), "Password":HashPasswd(Passd.strip()), "Email": Email, "Role" : "UnVerified", "AccVerifStatus": "Un Verified", "Projects": []}
+				Details = {"Name":UserName.strip(), "Password":HashPasswd(Passd.strip()), "Email": Email.strip(), "Role" : "UnVerified", "AccVerifStatus": "Un Verified", "Projects": []}
 				UDetails = json.dumps(Details)
 				Path = os.path.join("UserAcc", UserName.strip() + ".ua")
 				with open(Path, "w") as File:
