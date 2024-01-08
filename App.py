@@ -223,20 +223,16 @@ def CreateMeetSession(ProjName):
 				file.write("Task Assigned to " + SelMem + "\n")
 				file.write("Time Stamp: " + str(timers) + "\n")
 				file.write("Notes: " + Note)
-			# Example usage
-			subject = "New Task, " + "Deadline: " + str(DeadLine) 
+
+			subject = ProjName + ", New Task, " + "Deadline: " + str(DeadLine) 
 			body = Note
 			to_email = "venkatcala@gmail.com"
-			
-			# Set up your SMTP server details
 			smtp_server = "smtp.gmail.com"
 			smtp_port = 587
 			smtp_user = "vsoft101@gmail.com"  # Replace with your Gmail email address
 			smtp_password = "hfvq iubg yhhr ygca"  # Replace with your Gmail app password
-			
-			# Send the email
 			Emailer.send_email(subject, body, to_email, smtp_server, smtp_port, smtp_user, smtp_password)
-			#---------->Mail
+
 		if st.button("Save & New Note"):
 			timers = str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))
 			if st.session_state["Title"] == "":
