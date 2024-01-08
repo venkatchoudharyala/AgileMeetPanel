@@ -193,7 +193,7 @@ def CreateMeetSession(ProjName):
 			PjDetails = FileReader(Path)
 			PjDetails["MeetSessions"].append({"Tasks": {SelMem: []}})
 			PjDetails["MeetSessions"][-1]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
-			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
+			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			FileWriter(Path, PjDetails)
 			#---------->Mail
 	with col2:
