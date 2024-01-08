@@ -134,7 +134,6 @@ def CreateProject():
 				Team = []
 				Message = "Project - " + ProjName + " Created Successfully, Please reload the Application to Connect with your Team!!"
 				st.write(Message, icon="✅")
-				st.rerun()
 			else:
 				st.error("Enter a Valid Project Name")
 
