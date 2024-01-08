@@ -142,7 +142,7 @@ def MeetingPanel():
 			SessionTitles.append(MeetSess[i]["Title"])
 		with st.expander("Past Meetings"):
 			if len(SessionTitles) != 0:
-				SelMeet = st.selectbox("Select a Past Meeting", SessionTitles, index = -1)
+				SelMeet = st.selectbox("Select a Past Meeting", SessionTitles, index = len(SessionTitles)-1)
 			else:
 				st.write("No Meet Sessions yet")
 			if SelMeet:
