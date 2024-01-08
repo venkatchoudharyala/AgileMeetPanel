@@ -145,7 +145,7 @@ def MeetingPanel():
 				SelMeet = st.selectbox("Select a Past Meeting", SessionTitles, index = len(SessionTitles)-1)
 			else:
 				st.write("No Meet Sessions yet")
-			if SelMeet:
+			if len(SessionTitles) != 0 and SelMeet:
 				ProjectMeetFile += SelMeet
 				st.subheader("Meeting Notes")
 				with open(ProjectMeetFile, "r") as file:
