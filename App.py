@@ -159,6 +159,7 @@ def MeetingPanel():
 					df = pd.concat([df, newRow], ignore_index = True)
 				st.dataframe(df)
 	if project:
+		st.write("Create a New Meet Session")
 		CreateMeetSession(project)
 
 def CreateMeetSession(ProjName):
@@ -173,7 +174,7 @@ def CreateMeetSession(ProjName):
 	
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
-	with col:
+	with col1:
 		if st.button("Assign"):
 			Team = PjDetails["Team"]
 			SelMem = st.selectbox("Select a Team Member", Team)
