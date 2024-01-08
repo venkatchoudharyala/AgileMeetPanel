@@ -41,13 +41,18 @@ def main():
 			ap.Scrapper()
 		else:
 			if Role == "Lead" and Status == "Verified":
-				tab1, tab2, tab3 = st.tabs(["Projects", "New Project", "Meetings"])
+				tab1, tab2, tab3, tab4 = st.tabs(["Projects", "New Project", "Meetings", "New Meeting"])
 				with tab1:
 					LeadPanel()
 				with tab2:
 					CreateProject()
 				with tab3:
 					MeetingPanel()
+				with tab4:
+					Projects = UserDetails["Projects"]
+					project = st.selectbox("Select a Project", Projects, index = None, key = "p")
+					if project != None:
+						CreateMeetSession()
 					
 			elif Role == "Member" and Status == "Verified":
 				tab1, tab2 = st.tabs(["Projects", "Meetings"])
@@ -162,9 +167,6 @@ def MeetingPanel():
 					newRow = pd.DataFrame({"Task": SelMemTasks[i]["Task"], "Status": SelMemTasks[i]["Status"], "Deadline": SelMemTasks[i]["Deadline"]})
 					df = pd.concat([df, newRow], ignore_index = True)
 				st.dataframe(df)
-	if project:
-		st.write("Create a New Meet Session")
-		CreateMeetSession(project)
 
 def CreateMeetSession(ProjName):
 	time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
