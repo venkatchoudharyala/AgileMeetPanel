@@ -218,7 +218,7 @@ def CreateMeetSession(ProjName):
 			timers = str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))
 			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "a") as file:
 				file.write("\n--- New Note ---\n")
-				file.write("Time Stamp: " + timers + "\n")
+				file.write("Time Stamp: " + str(timers) + "\n")
 				file.write("Notes: " + Note)
 	
 			
