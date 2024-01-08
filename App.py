@@ -165,7 +165,7 @@ def CreateMeetSession(ProjName):
 	time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
-	NewMeetID = len(PjDetails["MeetIDs"])
+	NewMeetID = len(PjDetails["SessionTitles"])
 	PjDetails["SessionTitles"][NewMeetID]["Title"] = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
 	PjDetails["MeetTitles"][NewMeeID]["TimeStamp"] = str(time)
 	FileWriter(Path, PjDetails)
