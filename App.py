@@ -132,6 +132,7 @@ def CreateProject():
 				Path = "Projects/" + ProjName.strip() + ".pjs"
 				FileWriter(Path, PjDetails)
 				Team = []
+				st.write("Project - " + ProjName + " Created Successfully, Please reload the Application to Connect with your Team!!")
 				st.rerun()
 			else:
 				st.error("Enter a Valid Project Name")
