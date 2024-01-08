@@ -83,7 +83,7 @@ def LeadPanel():
 			
 			df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
 			for i in range(0, len(Tasks[SelMem])):
-				newRow = pd.DataFrame({"Task": Tasks[SelMem][i]["Task"], "Status": Tasks[SelMem][i]["Status"], "Deadline": Tasks[SelMem][i]["Deadline"]})
+				newRow = pd.DataFrame({"Task": Tasks[SelMem][i]["Task"], "Status": Tasks[SelMem][i]["Status"], "Deadline": Tasks[SelMem][i]["Deadline"]}, index=[i])
 				df = pd.concat([df, newRow], ignore_index = True)
 			st.dataframe(df)
 def MemberPanel():
