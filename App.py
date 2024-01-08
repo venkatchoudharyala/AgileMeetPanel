@@ -202,7 +202,7 @@ def CreateMeetSession(ProjName):
 		st.title(" ")
 
 		if st.button("Assign"):
-			time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
+			timers = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 			PjDetails = FileReader(Path)
 			if SelMem not in PjDetails["MeetSessions"][-1]["Tasks"].keys():
 				PjDetails["MeetSessions"][-1]["Tasks"][SelMem] = []
