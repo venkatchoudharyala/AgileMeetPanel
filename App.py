@@ -181,7 +181,7 @@ def CreateMeetSession(ProjName):
 				PjDetails["MeetSessions"][NewMeetID]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
 				PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
 				FileWriter(Path, PjDetails)
-				//---------->Mail
+				#---------->Mail
 	
 			
 				
