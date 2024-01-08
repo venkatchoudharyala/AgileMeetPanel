@@ -180,6 +180,8 @@ def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
+	if 'clicked' not in st.session_state:
+    		st.session_state.clicked = False
 	with st.form(key = "fomr", clear_on_submit=True):
 		time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 		st.session_state["Title"] = st.text_input("Enter a Title for the Note or Leave blank for Automated title")
@@ -196,7 +198,8 @@ def CreateMeetSession(ProjName):
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
 			PjDetails["MeetSessions"].append({"Tasks": {}})
 			FileWriter(Path, PjDetails)
-			st.success("Meeting Created Successfully just Work on with the Meet Notes", icon="✅")
+			if st.session_state.clicked:
+				st.success("Meeting Created Successfully just Work on with the Meet Notes", icon="✅")
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
 	with col1:
@@ -246,7 +249,9 @@ def CreateMeetSession(ProjName):
 				file.write("\n--- New Note ---\n")
 				file.write("Time Stamp: " + str(timers) + "\n")
 				file.write("Notes: " + Note)
-	
+
+def click_button():
+    st.session_state.clicked = True
 			
 				
 def FileReader(Path):
