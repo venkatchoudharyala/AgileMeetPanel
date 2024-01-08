@@ -170,19 +170,18 @@ def MeetingPanel():
 				st.dataframe(df)
 
 def CreateMeetSession(ProjName):
-	pc = st.empty()
 	time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
-	st.session_state["Title"] = pc.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
-	st.session_state["Title"] += ".txt"
-	if pc.button("Create", key = "create"):
-		with open("MeetingNotes/" + ProjName + "/" + Title, "w") as file:
-    			file.write("\n--- New Note ---\n")
-		PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
-		FileWriter(Path, PjDetails)
-		pc = st.empty()
+	with st.form(key, clear_on_submit=True, *, border=True):
+		st.session_state["Title"] = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
+		st.session_state["Title"] += ".txt"
+		if st.form_submit_button("Create", key = "create"):
+			with open("MeetingNotes/" + ProjName + "/" + Title, "w") as file:
+    				file.write("\n--- New Note ---\n")
+			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
+			FileWriter(Path, PjDetails)
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
 	with col1:
