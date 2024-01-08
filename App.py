@@ -204,6 +204,10 @@ def CreateMeetSession(ProjName):
 			PjDetails["MeetSessions"][-1]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			FileWriter(Path, PjDetails)
+			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "a") as file:
+				file.write("\nTask Assignment\n")
+				file.write(SelMem)
+				file.write(Note)
 			#---------->Mail
 
 	with col2:
