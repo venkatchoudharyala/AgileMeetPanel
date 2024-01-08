@@ -162,12 +162,15 @@ def MeetingPanel():
 				SelMeetInd = SessionTitles.index(SelMeet)
 				st.write(PjDetails["MeetSessions"])
 				SelMem = st.selectbox("Select a Team Member", list(PjDetails["Team"]), key = "TM")
-				SelMemTasks = PjDetails["MeetSessions"][SelMeetInd]["Tasks"][SelMem]
-				df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
-				for i in range(0, len(SelMemTasks)):
-					newRow = pd.DataFrame({"Task": SelMemTasks[i]["Task"], "Status": SelMemTasks[i]["Status"], "Deadline": SelMemTasks[i]["Deadline"]}, index=[i])
-					df = pd.concat([df, newRow], ignore_index = True)
-				st.dataframe(df)
+				try:
+					SelMemTasks = PjDetails["MeetSessions"][SelMeetInd]["Tasks"][SelMem]
+					df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
+					for i in range(0, len(SelMemTasks)):
+						newRow = pd.DataFrame({"Task": SelMemTasks[i]["Task"], "Status": SelMemTasks[i]["Status"], "Deadline": SelMemTasks[i]["Deadline"]}, index=[i])
+						df = pd.concat([df, newRow], ignore_index = True)
+					st.dataframe(df)
+				except KeyError:
+					st.write("No Tasks Assigned")
 
 def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
