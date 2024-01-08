@@ -173,18 +173,17 @@ def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
-	pc = st.empty()
-	with pc.form(key = "fomr", clear_on_submit=True):
+	with st.form(key = "fomr", clear_on_submit=True):
 		time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
-		st.session_state["Title"] = "MEET_HELD_ON_" + str(time)
-		st.session_state["Title"] = pc.text_input("Enter a Title for the Note", value = st.session_state["Title"])
+		st.session_state["Temp"] = False
+		st.session_state["Title"] = pc.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time), disabled = st.session_state["Temp"])
 		st.session_state["Title"] += ".txt"
-		if pc.form_submit_button("Create"):
-			with open("MeetingNotes/" + ProjName + "/" + Title, "w") as file:
+		if st.form_submit_button("Create"):
+			st.session_state["Temp"] = True
+			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "w") as file:
     				file.write("\n--- New Note ---\n")
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
 			FileWriter(Path, PjDetails)
-			pc = st.empty()
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
 	with col1:
