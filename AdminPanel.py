@@ -25,11 +25,11 @@ def Scrapper():
 	PrDir = os.listdir("Projects")
 	dir.remove("Test.ua")
 	col1, col2, col3 = st.columns(3)
-	with col1:
+	with st.expander("Users", key = "U"):
 		MPath = st.selectbox("Users", dir, key = "AdminP")
 		Path = "UserAcc/" + MPath
 		Rapo(Path)
-	with col3:
+	with st.expander("Projects", key = "P"):
 		PPath = st.selectbox("Projects", PrDir, key = "PP")
 		Path = "Projects/" + PPath
 		Rapo(Path)
