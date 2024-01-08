@@ -136,7 +136,7 @@ def MeetingPanel():
 		ProjectMeetFile = "MeetingNotes/" + project
 		ProjectDetailsFile = "Projects/" + project + ".pjs"
 		PjDetails = FileReader(ProjectDetailsFile)
-		MeetSess = PjDetails["MeetSessions"]
+		MeetSess = PjDetails["SessionTitles"]
 		for i in range(0, len(MeetSess)):
 			SessionTitles.append(MeetSess[i]["Title"])
 		with st.expander("Past Meetings"):
