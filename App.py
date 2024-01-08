@@ -185,7 +185,7 @@ def CreateMeetSession(ProjName):
 				st.session_state["Title"] = "MEET_HELD_ON_" + str(time)
 				st.session_state["Title"] = st.session_state["Title"] + "txt"
 			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "w") as file:
-    				file.write("\n--- New Note ---\n")
+    				file.write("\st.session_state["Title"]\n")
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
 			PjDetails["MeetSessions"].append({"Tasks": {}})
 			FileWriter(Path, PjDetails)
