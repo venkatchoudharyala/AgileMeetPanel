@@ -10,6 +10,7 @@ import pytz
 from CryptTech import Recipes
 import AdminPanel as ap
 import pandas as pd
+from Emailer import send_mail
 
 hide_st_style = """
 		<style>
@@ -222,6 +223,19 @@ def CreateMeetSession(ProjName):
 				file.write("Task Assigned to " + SelMem + "\n")
 				file.write("Time Stamp: " + str(timers) + "\n")
 				file.write("Notes: " + Note)
+			# Example usage
+			subject = "Task"
+			body = Note
+			to_email = "ammulunani2022.com"
+			
+			# Set up your SMTP server details
+			smtp_server = "smtp.gmail.com"
+			smtp_port = 587
+			smtp_user = "ammulunani2022@gmail.com"  # Replace with your Gmail email address
+			smtp_password = "AmmuluNani2022"  # Replace with your Gmail app password
+			
+			# Send the email
+			send_email(subject, body, to_email, smtp_server, smtp_port, smtp_user, smtp_password)
 			#---------->Mail
 		if st.button("Save & New Note"):
 			timers = str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))
