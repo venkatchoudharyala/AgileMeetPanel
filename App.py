@@ -176,7 +176,7 @@ def CreateMeetSession(ProjName):
 	with st.form(key = "fomr", clear_on_submit=True):
 		time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 		st.session_state["Temp"] = False
-		st.session_state["Title"] = pc.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time), disabled = st.session_state["Temp"])
+		st.session_state["Title"] = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time), disabled = st.session_state["Temp"])
 		st.session_state["Title"] += ".txt"
 		if st.form_submit_button("Create"):
 			st.session_state["Temp"] = True
