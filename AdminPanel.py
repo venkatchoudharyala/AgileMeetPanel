@@ -24,14 +24,14 @@ def Scrapper():
 	dir = os.listdir("UserAcc")
 	PrDir = os.listdir("Projects")
 	dir.remove("Test.ua")
-	col1, col2 = st.columns(2)
+	col1, col2, col3 = st.columns(3)
 	with col1:
 		MPath = st.selectbox("Users", dir, key = "AdminP")
 		Path = "UserAcc/" + MPath
 		Rapo(Path)
-	with col2:
+	with col3:
 		PPath = st.selectbox("Projects", PrDir, key = "PP")
-		Path = "Projects/" + MPath
+		Path = "Projects/" + PPath
 		Rapo(Path)
 	#UserName = Form.text_input("User Name")
 	
