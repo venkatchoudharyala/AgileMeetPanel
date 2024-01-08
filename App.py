@@ -120,7 +120,7 @@ def CreateProject():
 				UsAcc["Projects"].append(ProjName.strip())
 				FileWriter(Path, UsAcc)
 			
-			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": tsks}
+			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": tsks, "SessionTitles": []}
 			Path = "Projects/" + ProjName.strip() + ".pjs"
 			FileWriter(Path, PjDetails)
 			Team = []
@@ -164,7 +164,7 @@ def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["MeetIDs"])
-	PjDetails["MeetTitles"][NewMeetID]["Title"] = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
+	PjDetails["SessionTitles"][NewMeetID]["Title"] = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
 	PjDetails["MeetTitles"][NewMeeID]["TimeStamp"] = str(time)
 	FileWriter(Path, PjDetails)
 	
