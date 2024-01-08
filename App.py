@@ -189,7 +189,7 @@ def CreateMeetSession(ProjName):
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
 			PjDetails["MeetSessions"].append({"Tasks": {}})
 			FileWriter(Path, PjDetails)
-			Meeting(session_state["Title"])
+			Meeting(st.session_state["Title"])
 def Meeting(a):
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
