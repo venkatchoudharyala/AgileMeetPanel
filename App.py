@@ -181,7 +181,9 @@ def CreateMeetSession(ProjName):
     			file.write("This is my new note.\n")
 		PjDetails["SessionTitles"].append({"Title": Title, "TimeStamp": str(time)})
 		FileWriter(Path, PjDetails)
-	
+		Meeting(PjDetails)
+
+def Meeting(PjDetails)
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
 	with col1:
