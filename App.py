@@ -52,7 +52,7 @@ def main():
 					Projects = UserDetails["Projects"]
 					project = st.selectbox("Select a Project", Projects, index = None, key = "p")
 					if project != None:
-						CreateMeetSession()
+						CreateMeetSession(project)
 					
 			elif Role == "Member" and Status == "Verified":
 				tab1, tab2 = st.tabs(["Projects", "Meetings"])
