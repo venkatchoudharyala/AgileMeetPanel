@@ -196,6 +196,7 @@ def CreateMeetSession(ProjName):
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
 			PjDetails["MeetSessions"].append({"Tasks": {}})
 			FileWriter(Path, PjDetails)
+			st.success("Meeting Created Successfully just Work on with the Meet Notes", icon="✅")
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
 	with col1:
