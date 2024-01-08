@@ -156,7 +156,8 @@ def MeetingPanel():
 					newRow = pd.DataFrame({"Task": SelMemTasks[i]["Task"], "Status": SelMemTasks[i]["Status"], "Deadline": SelMemTasks[i]["Deadline"]})
 					df = pd.concat([df, newRow], ignore_index = True)
 				st.dataframe(df)
-	CreateMeetSession(project)
+	if project:
+		CreateMeetSession(project)
 
 def CreateMeetSession(ProjName):
 	time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
