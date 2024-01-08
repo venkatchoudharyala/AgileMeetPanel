@@ -170,8 +170,11 @@ def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
-	Title = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
+	Title = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time)) + ".txt"
 	if Title and st.button("Create", key = "create"):
+		with open(Title + ".txt", "a") as file:
+    			file.write("\n--- New Note ---\n")
+    			file.write("This is my new note.\n")
 		PjDetails["SessionTitles"].append({"Title": Title, "TimeStamp": str(time)})
 		FileWriter(Path, PjDetails)
 	
@@ -190,6 +193,11 @@ def CreateMeetSession(ProjName):
 				PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
 				FileWriter(Path, PjDetails)
 				#---------->Mail
+	with col2:
+		if st.button("Save & New Note"):
+			with open(Title + ".txt", "a") as file:
+    				file.write("\n--- New Note ---\n")
+    				file.write(Note)
 	
 			
 				
