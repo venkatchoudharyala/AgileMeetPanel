@@ -175,13 +175,13 @@ def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
-	Title = pc.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
-	Title += ".txt"
+	st.session_state["Title"] = pc.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
+	st.session_state["Title"] += ".txt"
 	if Title and pc.button("Create", key = "create"):
 		with open("MeetingNotes/" + ProjName + "/" + Title, "w") as file:
     			file.write("\n--- New Note ---\n")
     			file.write("This is my new note.\n")
-		PjDetails["SessionTitles"].append({"Title": Title, "TimeStamp": str(time)})
+		PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
 		FileWriter(Path, PjDetails)
 		pc = st.empty()
 	Note = st.text_area("Enter Action Items or Meeting Notes")
