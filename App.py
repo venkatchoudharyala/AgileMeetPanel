@@ -130,7 +130,7 @@ def CreateProject():
 
 def MeetingPanel():
 	Projects = UserDetails["Projects"]
-	project = st.selectbox("Select a Project", Projects, index = None)
+	project = st.selectbox("Select a Project", Projects, index = None, key = "mp")
 	if project != None:
 		with st.expander("Expand For more Details"):
 			ProjectMeetFile = "MeetingNotes/" + project
