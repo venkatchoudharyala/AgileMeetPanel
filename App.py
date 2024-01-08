@@ -186,6 +186,7 @@ def CreateMeetSession(ProjName):
 			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "w") as file:
     				file.write("\n--- New Note ---\n")
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
+			PjDetails["MeetSessions"].append({"Tasks": {SelMem: []}})
 			FileWriter(Path, PjDetails)
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
@@ -197,7 +198,6 @@ def CreateMeetSession(ProjName):
 		if st.button("Assign"):
 			time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
 			PjDetails = FileReader(Path)
-			PjDetails["MeetSessions"].append({"Tasks": {SelMem: []}})
 			PjDetails["MeetSessions"][-1]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			FileWriter(Path, PjDetails)
