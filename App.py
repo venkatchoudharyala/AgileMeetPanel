@@ -185,7 +185,7 @@ def CreateMeetSession(ProjName):
 			if st.session_state["Title"] == "":
 				st.session_state["Title"] = "MEET_HELD_ON_" + str(time.timestamp()).replace(".", "_")
 				#st.session_state["Title"] = st.session_state["Title"] + ".txt"
-			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "w") as file:
+			with open("MeetingNotes/" + ProjName + "/" + "MEET_HELD_ON_" + str(time.timestamp()).replace(".", "_"), "w") as file:
     				file.write("Session Name: " + st.session_state["Title"] + "\n")
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
 			PjDetails["MeetSessions"].append({"Tasks": {}})
