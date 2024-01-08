@@ -203,7 +203,7 @@ def CreateMeetSession(ProjName):
 			FileWriter(Path, PjDetails)
 			#---------->Mail
 	with col2:
-		st.write("")
+		st.Title(" ")
 		if st.button("Save & New Note"):
 			with open(st.session_state["Title"], "a") as file:
     				file.write("\n--- New Note ---\n")
