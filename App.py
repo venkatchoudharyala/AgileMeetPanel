@@ -166,9 +166,11 @@ def CreateMeetSession(ProjName):
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
-	PjDetails["SessionTitles"][NewMeetID]["Title"] = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
-	PjDetails["MeetTitles"][NewMeeID]["TimeStamp"] = str(time)
-	FileWriter(Path, PjDetails)
+	Title = st.text_input("Enter a Title for the Note", value = "MEET_HELD_ON_" + str(time))
+	if Title:
+		PjDetails["SessionTitles"][NewMeetID]["Title"] = Title
+		PjDetails["MeetTitles"][NewMeeID]["TimeStamp"] = str(time)
+		FileWriter(Path, PjDetails)
 	
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
