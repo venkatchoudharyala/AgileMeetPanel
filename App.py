@@ -204,6 +204,7 @@ def CreateMeetSession(ProjName):
 			#---------->Mail
 	with col2:
 		st.title(" ")
+		st.title(" ")
 		if st.button("Save & New Note"):
 			with open(st.session_state["Title"], "a") as file:
     				file.write("\n--- New Note ---\n")
