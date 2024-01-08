@@ -106,33 +106,34 @@ def MemberPanel():
 			st.dataframe(df)
 
 def CreateProject():
-	ProjName = st.text_input("Enter the Project Name")
-	ProjDescp = st.text_input("Description")
-
-	dirs = os.listdir("UserAcc")
-	dirs.remove("Admin.ua")
-	dirs.remove(UserDetails["Name"] + ".ua")
-	dirs.remove("Test.ua")
-	Team = st.multiselect("Select Team", dirs, placeholder = "Select ur Team Members")
-	Team.append(UserDetails["Name"] + ".ua")
-	if st.button("Create"):
-		os.makedirs("MeetingNotes/" + ProjName)
-		if ProjName.strip() != "":
-			tsks = {}
-			for i in Team:
-				tsks[i] = []
-				Path = "UserAcc/" + i
-				UsAcc = FileReader(Path)
-				UsAcc["Projects"].append(ProjName.strip())
-				FileWriter(Path, UsAcc)
-			
-			PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": tsks, "SessionTitles": []}
-			Path = "Projects/" + ProjName.strip() + ".pjs"
-			FileWriter(Path, PjDetails)
-			Team = []
-			st.rerun()
-		else:
-			st.error("Enter a Valid Project Name")
+	with st.form(key = "cp", clear_on_submit=True):
+		ProjName = st.text_input("Enter the Project Name")
+		ProjDescp = st.text_input("Description")
+	
+		dirs = os.listdir("UserAcc")
+		dirs.remove("Admin.ua")
+		dirs.remove(UserDetails["Name"] + ".ua")
+		dirs.remove("Test.ua")
+		Team = st.multiselect("Select Team", dirs, placeholder = "Select ur Team Members")
+		Team.append(UserDetails["Name"] + ".ua")
+		if st.form_submit_button("Create"):
+			os.makedirs("MeetingNotes/" + ProjName)
+			if ProjName.strip() != "":
+				tsks = {}
+				for i in Team:
+					tsks[i] = []
+					Path = "UserAcc/" + i
+					UsAcc = FileReader(Path)
+					UsAcc["Projects"].append(ProjName.strip())
+					FileWriter(Path, UsAcc)
+				
+				PjDetails = {"Description": ProjDescp, "MeetSessions": [], "Team": Team, "Tasks": tsks, "SessionTitles": []}
+				Path = "Projects/" + ProjName.strip() + ".pjs"
+				FileWriter(Path, PjDetails)
+				Team = []
+				st.rerun()
+			else:
+				st.error("Enter a Valid Project Name")
 
 def MeetingPanel():
 	Projects = UserDetails["Projects"]
