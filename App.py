@@ -183,8 +183,10 @@ def CreateMeetSession(ProjName):
 		st.session_state["Title"] = st.text_input("Enter a Title for the Note or Leave blank for Automated title")
 		if st.form_submit_button("Create"):
 			if st.session_state["Title"] == "":
-				st.session_state["Title"] = "MEET_HELD_ON_" + str(time.timestamp()).replace(".", "_")
-				st.session_state["Title"] = st.session_state["Title"] + ".txt"
+				st.session_state["New"] = "MEET_HELD_ON_" + str(time.timestamp()).replace(".", "_")
+				#st.session_state["Title"] = st.session_state["Title"] + ".txt"
+			else:
+				st.session_state["New"] = st.session_state["Title"]
 			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "w") as file:
     				file.write("Session Name: " + st.session_state["Title"] + "\n")
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
@@ -210,14 +212,14 @@ def CreateMeetSession(ProjName):
 			PjDetails["MeetSessions"][-1]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			FileWriter(Path, PjDetails)
-			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "a") as file:
+			with open("MeetingNotes/" + ProjName + "/" + st.session_state["New"], "a") as file:
 				file.write("Task Assigned to " + SelMem + "\n")
 				file.write("Time Stamp: " + str(timers) + "\n")
 				file.write("Notes: " + Note)
 			#---------->Mail
 		if st.button("Save & New Note"):
 			timers = str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))
-			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "a") as file:
+			with open("MeetingNotes/" + ProjName + "/" + st.session_state["New"], "a") as file:
 				file.write("\n--- New Note ---\n")
 				file.write("Time Stamp: " + str(timers) + "\n")
 				file.write("Notes: " + Note)
