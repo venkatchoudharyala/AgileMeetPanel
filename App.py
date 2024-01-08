@@ -182,19 +182,18 @@ def CreateMeetSession(ProjName):
 	Note = st.text_area("Enter Action Items or Meeting Notes")
 	col1, col2 = st.columns(2)
 	with col1:
-		if st.button("Assign"):
+		if st.checkbox("Assign"):
 			Team = PjDetails["Team"]
 			SelMem = st.selectbox("Select a Team Member", Team)
 			DeadLine = st.date_input("Select the Deadline", value = "today")
 			Status = "Un Resolved"
-			#if st.button("Send"):
-			
-			time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
-			PjDetails = FileReader(Path)
-			PjDetails["MeetSessions"][NewMeetID]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
-			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
-			FileWriter(Path, PjDetails)
-			#---------->Mail
+			if st.button("Send"):
+				time = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
+				PjDetails = FileReader(Path)
+				PjDetails["MeetSessions"][NewMeetID]["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
+				PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": DeadLine})
+				FileWriter(Path, PjDetails)
+				#---------->Mail
 	with col2:
 		if st.button("Save & New Note"):
 			with open(Title + ".txt", "a") as file:
