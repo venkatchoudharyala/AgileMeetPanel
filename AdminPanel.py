@@ -23,6 +23,7 @@ def Scrapper():
 	Form = st.form("Login")
 	dir = os.listdir("UserAcc")
 	PrDir = os.listdir("Projects")
+	PrDir.remove("test.pjs")
 	dir.remove("Test.ua")
 	col1, col2, col3 = st.columns(3)
 	with st.expander("Users"):
