@@ -111,6 +111,7 @@ def CreateProject():
 	Team = st.multiselect("Select Team", dirs, placeholder = "Select ur Team Members")
 	Team.append(UserDetails["Name"] + ".ua")
 	if st.button("Create"):
+		os.makedirs("MeetingNotes/" + ProjName)
 		if ProjName.strip() != "":
 			tsks = {}
 			for i in Team:
