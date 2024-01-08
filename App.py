@@ -141,7 +141,10 @@ def MeetingPanel():
 		for i in range(0, len(MeetSess)):
 			SessionTitles.append(MeetSess[i]["Title"])
 		with st.expander("Past Meetings"):
-			SelMeet = st.selectbox("Select a Past Meeting", SessionTitles, index = -1)
+			if len(SessionTitles) != 0:
+				SelMeet = st.selectbox("Select a Past Meeting", SessionTitles, index = -1)
+			else:
+				st.write("No Meet Sessions yet")
 			if SelMeet:
 				ProjectMeetFile += SelMeet
 				st.subheader("Meeting Notes")
