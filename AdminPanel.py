@@ -26,11 +26,11 @@ def Scrapper():
 	dir.remove("Test.ua")
 	col1, col2, col3 = st.columns(3)
 	with st.expander("Users"):
-		MPath = st.selectbox("Users", dir, key = "AdminP", label_visibility = "collapsed")
+		MPath = st.selectbox("Users", dir, index = None, key = "AdminP", label_visibility = "collapsed")
 		Path = "UserAcc/" + MPath
 		Rapo(Path)
 	with st.expander("Projects"):
-		PPath = st.selectbox("Projects", PrDir, key = "PP", label_visibility = "collapsed")
+		PPath = st.selectbox("Projects", PrDir, index = None, key = "PP", label_visibility = "collapsed")
 		Path = "Projects/" + PPath
 		Rapo(Path)
 	#UserName = Form.text_input("User Name")
