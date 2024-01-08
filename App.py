@@ -184,7 +184,7 @@ def CreateMeetSession(ProjName):
 		if st.form_submit_button("Create"):
 			if st.session_state["Title"] == "":
 				st.session_state["Title"] = "MEET_HELD_ON_" + str(time)
-				st.session_state["Title"] = st.session_state["Title"] + "txt"
+				st.session_state["Title"] = st.session_state["Title"] + ".txt"
 			with open("MeetingNotes/" + ProjName + "/" + st.session_state["Title"], "w") as file:
     				file.write("Session Name: " + st.session_state["Title"] + "\n")
 			PjDetails["SessionTitles"].append({"Title": st.session_state["Title"], "TimeStamp": str(time)})
