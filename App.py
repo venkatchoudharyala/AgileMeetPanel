@@ -161,7 +161,7 @@ def MeetingPanel():
 	
 				SelMeetInd = SessionTitles.index(SelMeet)
 				SelMem = st.selectbox("Select a Team Member", list(MeetSess[SelMeetInd]["Tasks"].keys()))
-				SelMemTasks = MeetSess[SelMeetInd]["Tasks"][SelMem]
+				SelMemTasks = PjDetails["MeetSessions"][SelMeetInd]["Tasks"][SelMem]
 				df = pd.DataFrame(columns = ["Task", "Status", "Deadline"])
 				for i in range(0, len(SelMemTasks)):
 					newRow = pd.DataFrame({"Task": SelMemTasks[i]["Task"], "Status": SelMemTasks[i]["Status"], "Deadline": SelMemTasks[i]["Deadline"]})
