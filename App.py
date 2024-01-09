@@ -53,7 +53,8 @@ def main():
 					Projects = UserDetails["Projects"]
 					project = st.selectbox("Select a Project", Projects, index = None, key = "p")
 					if project != None:
-						CreateMeetSession(project)
+						k = os.listdir("MeetingNotes/" + ProjName)
+						CreateMeetSession(project, len(k))
 					
 			elif Role == "Member" and Status == "Verified":
 				tab1, tab2 = st.tabs(["Projects", "Meetings"])
@@ -204,7 +205,7 @@ def MeetingPanel():
 				except KeyError:
 					st.write("No Tasks Assigned")
 
-def CreateMeetSession(ProjName):
+def CreateMeetSession(ProjName, len):
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
@@ -216,7 +217,7 @@ def CreateMeetSession(ProjName):
 		if st.form_submit_button("Create"):
 			click_button()
 			if st.session_state["Title"] == "":
-				st.session_state["Title"] = "MEET_HELD_ON_" + str(time.timestamp()).replace(".", "_")
+				st.session_state["Title"] = "MEET_SESSION_ID_" + str(len)
 				#st.session_state["Title"] = st.session_state["Title"] + ".txt"
 			if st.session_state["Title"] == "":
 				kpr = "MEET_HELD_ON_" + str(time.timestamp()).replace(".", "_")
@@ -254,6 +255,7 @@ def CreateMeetSession(ProjName):
 			else:
 				kpr = st.session_state["Title"]
 			with open("MeetingNotes/" + ProjName + "/" + kpr, "a") as file:
+				file.write("\n--- New Note ---\n")
 				file.write("Task Assigned to " + SelMem + "\n")
 				file.write("Time Stamp: " + str(timers) + "\n")
 				file.write("Notes: " + Note)
