@@ -187,6 +187,7 @@ def MeetingPanel():
 				ProjectMeetFile = ProjectMeetFile + "/" + SelMeet
 				st.subheader("Meeting Notes")
 				with open(ProjectMeetFile, "r") as file:
+					lines = file.readlines()
 					for line in lines:
 						st.write(line.strip())
 				with open(ProjectMeetFile, "r") as file:
