@@ -43,8 +43,9 @@ def Scrapper():
 			st.success(Details["Name"] + " is upto date", icon="✅")
 	with st.expander("Projects"):
 		PPath = st.selectbox("Projects", PrDir, key = "PP", label_visibility = "collapsed")
-		Path = "Projects/" + PPath
-		Rapo(Path)
+		if PPath:
+			Path = "Projects/" + PPath
+			Rapo(Path)
 	with st.expander("Authorizations"):
 		with open("LoginApp/UnVerified.uv", "r") as File:
 			NewUsers = json.load(File)
