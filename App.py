@@ -182,11 +182,17 @@ def MeetingPanel():
 			if len(SessionTitles) != 0:
 				SelMeet = st.selectbox("Select a Past Meeting", SessionTitles, index = len(SessionTitles)-1)
 			else:
-				st.write("No Meet Sessions yet")
+				st.error("No Meet Sessions yet")
 			if len(SessionTitles) != 0 and SelMeet:
 				ProjectMeetFile = ProjectMeetFile + "/" + SelMeet
 				st.subheader("Meeting Notes")
 				with open(ProjectMeetFile, "r") as file:
+					btn = st.download_button(
+					            label="Download image",
+					            data=file,
+					            file_name="flower.png",
+					            mime="image/png"
+					          )
 					lines = file.readlines()
 					for line in lines:
 						st.write(line.strip())
