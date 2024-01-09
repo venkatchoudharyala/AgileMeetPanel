@@ -251,7 +251,7 @@ def CreateMeetSession(ProjName, l):
 			PjDetails["Tasks"][SelMem].append({"Task": Note, "Status": Status, "Deadline": str(DeadLine)})
 			FileWriter(Path, PjDetails)
 			if st.session_state["Title"] == "":
-				kpr = "MEET_SESSION_ID_" + str(l)
+				kpr = "MEET_SESSION_ID_" + str(l - 1)
 			else:
 				kpr = st.session_state["Title"]
 			with open("MeetingNotes/" + ProjName + "/" + kpr, "a") as file:
@@ -276,7 +276,7 @@ def CreateMeetSession(ProjName, l):
 		if st.button("Save & New Note"):
 			timers = str(datetime.datetime.now(pytz.timezone("Asia/Kolkata")))
 			if st.session_state["Title"] == "":
-				kpr = "MEET_SESSION_ID_" + str(l)
+				kpr = "MEET_SESSION_ID_" + str(l - 1)
 			else:
 				kpr = st.session_state["Title"]
 			with open("MeetingNotes/" + ProjName + "/" + kpr, "a") as file:
