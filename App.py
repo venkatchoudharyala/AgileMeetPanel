@@ -130,7 +130,7 @@ def MemberPanel():
 			Details["MeetSessions"][PjIndex]["Tasks"][UserDetails["Name"] + ".ua"][SpectaskIndex]["Status"] = TicketStatus
 			FileWriter("Projects/" + UserDetails["Tasks"][ind]["Project"] + ".pjs", Details)
 
-			st.success("Ticket Status Updated Successfully", index = "✅")
+			st.success("Ticket Status Updated Successfully", icon = "✅")
 
 def CreateProject():
 	with st.form(key = "cp", clear_on_submit=True):
