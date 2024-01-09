@@ -23,7 +23,7 @@ def main():
 #@st.cache_data(experimental_allow_widgets=True)
 def LoginPage():
 	ExceptFlag = 0
-	st.title("        AGILE DASHBOARD")
+	st.title("_AGILE DASHBOARD_")
 	st.header("Login")
 	InpForm = st.form("Login")
 	RePassd = "ImNoWhere!!!"
