@@ -41,6 +41,7 @@ def Scrapper():
 			if st.button("Send OverDue Remainder"):
 				for i in OverDue:
 					OverDewMailer(i, Details["Email"])
+				st.success("Over Due Remainder Sent")
 		else:
 			st.success(Details["Name"] + " is upto date", icon="✅")
 	with st.expander("Projects"):
