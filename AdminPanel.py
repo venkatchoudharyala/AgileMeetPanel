@@ -29,7 +29,8 @@ def Scrapper():
 		Details = Rapo(Path)
 		OverDue = []
 		for i in Details["Tasks"]:
-			DeadLine = datetime.datetime.strptime(i["Deadline"], '%Y-%m-%d %H:%M:%S.%f+05:30')
+			# %H:%M:%S.%f+05:30
+			DeadLine = datetime.datetime.strptime(i["Deadline"], '%Y-%m-%d')
 			if i["Status"] != "Solved" and TimeDelta(datetime.datetime.now(), DeadLine):
 				st.error("Task: " + i["Task"] + " of the Project, " + i["Project"] + " Was crossed DeadLine")
 				OverDue.append(i)	
