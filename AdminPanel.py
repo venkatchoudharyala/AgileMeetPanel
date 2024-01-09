@@ -96,7 +96,7 @@ def TimeDelta(Curr, Deadline):
 	else:
 		return False
 def OverDewMailer(TaskDetail, EmailID):
-	subject = "TaskDetail["Project"] + ", Task, " + TaskDetail["Task"]
+	subject = TaskDetail["Project"] + ", Task, " + TaskDetail["Task"]
 	body = "has crossed DeadLine please report to Admin and Teamlead Immediately" 
 	to_email = EmailID
 	smtp_server = "smtp.gmail.com"
