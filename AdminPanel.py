@@ -1,12 +1,9 @@
 import streamlit as st
 import json
-import zipfile
 import os
 import pandas as pd
-import base64
-import io
-from PIL import Image
-import numpy as np
+import datetime
+
 
 st.set_page_config(initial_sidebar_state = "collapsed")
 
@@ -29,7 +26,21 @@ def Scrapper():
 	with st.expander("Users"):
 		MPath = st.selectbox("Users", dir, key = "AdminP", label_visibility = "collapsed")
 		Path = "UserAcc/" + MPath
-		Rapo(Path)
+		Details = Rapo(Path)
+		OverDue = []
+		for i in Details["Tasks"]:
+			DeadLine = datetime.datetime.strptime(Details["Deadline"], '%Y-%m-%d %H:%M:%S.%f+05:30')
+    			if Details["Tasks"][i]["Status"] != "Solved" and TimeDelta(datetime.datetime.now(), DeadLine):
+				st.error("Task: " + Details["Tasks"][i]["Task"] + " of the Project, " + Details["Tasks"][i]["Project"] + " Was crossed DeadLine")
+				OverDue.append(Details["Tasks"][i])	
+			elif Details["Tasks"][i]["Status"] != "Solved":
+				st.success("Task: " + Details["Tasks"][i]["Task"] + " of the Project, " + Details["Tasks"][i]["Project"] + " is still Pending")
+		if len(OverDue) > 0:
+			if st.button("Send OverDue Remainder"):
+				for i in OverDue:
+					OverDewMailer(i, Details["Email"])
+		else:
+			st.success(Details["Name"] + " is upto date", icon="✅")
 	with st.expander("Projects"):
 		PPath = st.selectbox("Projects", PrDir, key = "PP", label_visibility = "collapsed")
 		Path = "Projects/" + PPath
@@ -76,5 +87,20 @@ def Rapo(Path):
 			UDetails = File.read()
 			Details = json.loads(UDetails)
 			st.write(Details)
+			return Details
 	except FileNotFoundError:
 		st.write("User Not Found")
+def TimeDelta(Curr, Deadline):
+	if (Deadline - Curr) < 0:
+		return True
+	else:
+		return False
+def OverDewMailer(TaskDetail, EmailID):
+	subject = "TaskDetail["Project"] + ", Task, " + TaskDetail["Task"]
+	body = "has crossed DeadLine please report to Admin and Teamlead Immediately" 
+	to_email = EmailID
+	smtp_server = "smtp.gmail.com"
+	smtp_port = 587
+	smtp_user = "vsoft101@gmail.com"
+	smtp_password = "hfvq iubg yhhr ygca"
+	Emailer.send_email(subject, body, to_email, smtp_server, smtp_port, smtp_user, smtp_password)
