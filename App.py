@@ -53,7 +53,7 @@ def main():
 					Projects = UserDetails["Projects"]
 					project = st.selectbox("Select a Project", Projects, index = None, key = "p")
 					if project != None:
-						k = os.listdir("MeetingNotes/" + ProjName)
+						k = os.listdir("MeetingNotes/" + Project)
 						CreateMeetSession(project, len(k))
 					
 			elif Role == "Member" and Status == "Verified":
