@@ -30,7 +30,7 @@ def LoginPage():
 	st.subheader(" ")
 	InpForm = st.form("Login")
 	RePassd = "ImNoWhere!!!"
-	UserName = InpForm.text_input("User Name")
+	UserName = InpForm.text_input("Employee Name")
 	Passd = InpForm.text_input("Password", type = "password")
 
 	if InpForm.form_submit_button("Submit"):
@@ -61,10 +61,12 @@ def LoginPage():
 
 #@st.cache_data(experimental_allow_widgets=True)
 def SignUpPage():
-	st.title("AGILE DASHBOARD")
-	st.header("Sign Up")
+	st.markdown("<h2 style='text-align: center; font-style: italic;'>AGILE DASHBOARD SIGN UP</h2>", unsafe_allow_html=True)
+	#st.write(" ")
+	st.subheader(" ")
+	st.subheader(" ")
 	Form = st.form("SignUp Form", clear_on_submit = True)
-	UserName = Form.text_input("User Name")
+	UserName = Form.text_input("Employee Name")
 	Email = Form.text_input("Company Email")
 	Passd = Form.text_input("Password", type = "password", key = "password")
 	ConfPassd = Form.text_input("Confirm Password", type = "password", key = "Cpassword")
