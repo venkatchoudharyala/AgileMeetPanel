@@ -205,7 +205,7 @@ def MeetingPanel():
 				except KeyError:
 					st.write("No Tasks Assigned")
 
-def CreateMeetSession(ProjName, len):
+def CreateMeetSession(ProjName, l):
 	Path = "Projects/" + ProjName + ".pjs"
 	PjDetails = FileReader(Path)
 	NewMeetID = len(PjDetails["SessionTitles"])
@@ -217,7 +217,7 @@ def CreateMeetSession(ProjName, len):
 		if st.form_submit_button("Create"):
 			click_button()
 			if st.session_state["Title"] == "":
-				st.session_state["Title"] = "MEET_SESSION_ID_" + str(len)
+				st.session_state["Title"] = "MEET_SESSION_ID_" + str(l)
 				#st.session_state["Title"] = st.session_state["Title"] + ".txt"
 			if st.session_state["Title"] == "":
 				kpr = "MEET_HELD_ON_" + str(time.timestamp()).replace(".", "_")
