@@ -60,7 +60,7 @@ def LoginPage():
 def SignUpPage():
 	st.title("AGILE DASHBOARD")
 	st.header("Sign Up")
-	Form = st.form("SignUp Form")
+	Form = st.form("SignUp Form", clear_on_submit = True)
 	UserName = Form.text_input("User Name")
 	Email = Form.text_input("Company Email")
 	Passd = Form.text_input("Password", type = "password", key = "password")
