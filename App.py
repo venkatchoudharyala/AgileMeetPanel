@@ -233,7 +233,7 @@ def CreateMeetSession(ProjName):
 			subject = ProjName + ", New Task, " + "Deadline: " + str(DeadLine) 
 			body = Note
 			RecDetails = FileReader("UserAcc/" + SelMem)
-			NewRow = {"Project": ProjName, "MeetSession": kpr, "Task": Note, "Status": Status, "Deadline": DeadLine}
+			NewRow = {"Project": ProjName, "MeetSession": kpr, "Task": Note, "Status": Status, "Deadline": str(DeadLine)}
 			RecDetails["Tasks"].append(NewRow)
 			FileWriter("UserAcc/" + SelMem, RecDetails)
 			to_email = RecDetails["Email"]
