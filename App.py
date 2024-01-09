@@ -110,7 +110,8 @@ def MemberPanel():
 		Tasks = []
 		for i in UserDetails["Tasks"]:
 			if i["Status"] != "Solved":
-				Tasks.append("The Ticket " + i["Task"] + " of Project ": i["Project"])
+				NewRow = "The Ticket " + i["Task"] + " of Project: " i["Project"]
+				Tasks.append(NewRow)
 		SelTask = st.selectbox("Update your Work", Tasks)
 		ind = Tasks.index(SelTask)
 		TicketStatus = st.selectbox("Select Ticket Status", ["In Progress", "Solved", "Blocked"])
