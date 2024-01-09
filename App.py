@@ -109,7 +109,7 @@ def MemberPanel():
 	with st.form(key = "mem", clear_on_submit = True):
 		Tasks = []
 		for i in UserDetails["Tasks"]:
-			if i["Status"] != "Completed":
+			if i["Status"] != "Solved":
 				Tasks.append(i["Task"])
 		SelTask = st.selectbox("Update your Work", Tasks)
 		ind = Tasks.index(SelTask)
