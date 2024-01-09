@@ -194,7 +194,7 @@ def MeetingPanel():
 					btn = st.download_button(
 					            label="Download",
 					            data=file,
-					            file_name="flower.txt",
+					            file_name = ProjectMeetFile".txt",
 					            mime="text/txt"
 					          )
 	
