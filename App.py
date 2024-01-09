@@ -187,15 +187,15 @@ def MeetingPanel():
 				ProjectMeetFile = ProjectMeetFile + "/" + SelMeet
 				st.subheader("Meeting Notes")
 				with open(ProjectMeetFile, "r") as file:
-					btn = st.download_button(
-					            label="Download image",
-					            data=file,
-					            file_name="flower.png",
-					            mime="image/png"
-					          )
-					lines = file.readlines()
 					for line in lines:
 						st.write(line.strip())
+				with open(ProjectMeetFile, "r") as file:
+					btn = st.download_button(
+					            label="Download",
+					            data=file,
+					            file_name="flower.txt",
+					            mime="text/txt"
+					          )
 	
 				SelMeetInd = SessionTitles.index(SelMeet)
 				#st.write(SelMeetInd)
