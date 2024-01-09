@@ -23,7 +23,8 @@ def main():
 #@st.cache_data(experimental_allow_widgets=True)
 def LoginPage():
 	ExceptFlag = 0
-	st.header("Login Page")
+	st.title("AGILE DASHBOARD")
+	st.header("Login")
 	InpForm = st.form("Login")
 	RePassd = "ImNoWhere!!!"
 	UserName = InpForm.text_input("User Name")
@@ -57,7 +58,8 @@ def LoginPage():
 
 #@st.cache_data(experimental_allow_widgets=True)
 def SignUpPage():
-	st.header("Sign Up Page")
+	st.title("AGILE DASHBOARD")
+	st.header("Sign Up")
 	Form = st.form("SignUp Form")
 	UserName = Form.text_input("User Name")
 	Email = Form.text_input("Company Email")
@@ -95,10 +97,11 @@ def SignUpPage():
 						UnvList["Names"].append(UserName.strip())
 						json.dump(UnvList, File)
 
-				st.write("Signup Successful")
+				st.success("Signup Successful, please stay tuned for Account Verification from the Admin")
+				st.subheader("DISCLAIMER")
 				st.write("Be Marked with ur Account Credentials..")
 				st.write("As we don't host any Integrity System, we can't have Password CHANGE option.. ")
-				st.write("Therefore if Credentials were lost the chats and Account will be in-accessible!!")
+				st.write("Therefore if Credentials were lost, Account will be in-accessible!!")
 				st.session_state['page'] = 'LoginPage'
 				if st.button("Back to Login"):
 					#st.session_state['page'] = 'LoginPage'
