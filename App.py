@@ -112,7 +112,7 @@ def MemberPanel():
 			Tasks.append(i["Task"])
 		SelTask = st.selectbox("Update your Work", Tasks)
 		ind = Tasks.index(SelTask)
-		TicketStatus = st.selectbox("Select Ticket Status", ["In Progress", "Completed", "Blocked"])
+		TicketStatus = st.selectbox("Select Ticket Status", ["In Progress", "Solved", "Blocked"])
 		if st.form_submit_button("Update"):
 			Details = FileReader("UserAcc/" + UserDetails["Name"] + ".ua")
 			Details["Tasks"][ind]["Status"] = TicketStatus
