@@ -24,9 +24,9 @@ def main():
 def LoginPage():
 	ExceptFlag = 0
 	#st.title("<h1 style='text-align: center;'>_AGILE DASHBOARD_")
-	st.markdown("<h2 style='text-align: center; font-style: italic;'>AGILE DASHBOARD</h2>", unsafe_allow_html=True)
-	st.write(" ")
-	st.subheader("Login")
+	st.markdown("<h2 style='text-align: center; font-style: italic;'>AGILE DASHBOARD LOGIN</h2>", unsafe_allow_html=True)
+	#st.write(" ")
+	st.subheader(" ")
 	InpForm = st.form("Login")
 	RePassd = "ImNoWhere!!!"
 	UserName = InpForm.text_input("User Name")
