@@ -24,7 +24,7 @@ def Scrapper():
 	PrDir.remove("test.pjs")
 	dir.remove("Test.ua")
 	col1, col2, col3 = st.columns(3)
-	with st.expander("Users"):
+	with st.expander("Employees"):
 		MPath = st.selectbox("Users", dir, key = "AdminP", label_visibility = "collapsed")
 		Path = "UserAcc/" + MPath
 		Details = Rapo(Path)
