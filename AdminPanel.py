@@ -93,7 +93,7 @@ def Rapo(Path):
 	except FileNotFoundError:
 		st.write("User Not Found")
 def TimeDelta(Curr, Deadline):
-	if (Deadline - Curr) < 0:
+	if Deadline < Curr:
 		return True
 	else:
 		return False
