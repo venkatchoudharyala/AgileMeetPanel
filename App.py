@@ -106,6 +106,26 @@ def MemberPanel():
 				df = pd.concat([df, newRow], ignore_index = True)
 			st.dataframe(df)
 
+	with st.form(key = "mem", clear_on_submit = True):
+		Tasks = []
+		for i in UserDetails["Tasks"]:
+			Tasks.append(i["Task"])
+		SelTask = st.selectbox("Update your Work", Tasks, index = None, placeholder = "Select a Task")
+		ind = Tasks.index(SelTask)
+		TicketStatus = st.selectbox("Select Ticket Status", ["In Progress", "Completed", "Blocked"])
+		if st.form_submit_button("Update"):
+			Details = FileReader("UserAcc/" + UserDetails["Name"] + ".ua")
+			Details["Tasks"][ind]["Status"] = TicketStatus
+			FileWriter("UserAcc/" + UserDetails["Name"] + ".ua", Details)
+
+			Details = FileReader("Projects/" + UserDetails["Tasks"][ind]["Project"] + ".pjs")
+			PjIndex = Details["SessionTitles"].index(UserDetails["Tasks"][ind]["MeetSession"])
+			SpectaskIndex = Details["MeetSessions"][PjIndex][UserDetails["Name"] + ".ua"].index(UserDetails["Tasks"][ind]["Task"])
+			Details["MeetSessions"][PjIndex][UserDetails["Name"] + ".ua"][SpectaskIndex]["Status"] = TicketStatus
+			FileWriter("Projects/" + UserDetails["Tasks"][ind]["Project"] + ".pjs", Details)
+
+			st.success("Ticket Status Updated Successfully", index = "✅")
+
 def CreateProject():
 	with st.form(key = "cp", clear_on_submit=True):
 		ProjName = st.text_input("Enter the Project Name")
