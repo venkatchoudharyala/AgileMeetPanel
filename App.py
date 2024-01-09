@@ -119,7 +119,10 @@ def MemberPanel():
 			FileWriter("UserAcc/" + UserDetails["Name"] + ".ua", Details)
 
 			Details = FileReader("Projects/" + UserDetails["Tasks"][ind]["Project"] + ".pjs")
-			PjIndex = Details["SessionTitles"].index(UserDetails["Tasks"][ind]["MeetSession"])
+			STitles = []
+			for j in Details["SessionTitles"]:
+				STitles.append(j["Title"])
+			PjIndex = STitles.index(UserDetails["Tasks"][ind]["MeetSession"])
 			SpectaskIndex = Details["MeetSessions"][PjIndex][UserDetails["Name"] + ".ua"].index(UserDetails["Tasks"][ind]["Task"])
 			Details["MeetSessions"][PjIndex][UserDetails["Name"] + ".ua"][SpectaskIndex]["Status"] = TicketStatus
 			FileWriter("Projects/" + UserDetails["Tasks"][ind]["Project"] + ".pjs", Details)
