@@ -1,2 +1,6 @@
 bcrypt
 cryptography
+streamlit
+pandas
+os
+datetime
