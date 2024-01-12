@@ -7,10 +7,8 @@ import warnings
 import os
 import datetime
 import pytz
-from CryptTech import Recipes
 import AdminPanel as ap
 import pandas as pd
-import Emailer
 
 hide_st_style = """
 		<style>
